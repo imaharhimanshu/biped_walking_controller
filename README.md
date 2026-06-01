@@ -1,4 +1,4 @@
-# Team Humanoid: Bipedal Locomotion Stack
+# Team Humanoid: Biped_Walking_Controller
 
 ## Overview
 This repository contains the core ROS catkin workspace for Team Humanoid's bipedal walking robot. It includes the mathematical implementations for inverse kinematics, dynamic balance (ZMP), and hardware control. The project is built using a hybrid C++ and Python architecture to balance high-frequency control loops with rapid algorithmic prototyping.
