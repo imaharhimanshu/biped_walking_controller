@@ -1,0 +1,69 @@
+# Publish all joint states -----------------------------------
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+
+# ==========================================
+# HIPS (PITCH)
+# ==========================================
+motor_upper_leg_below_v1_Revolute_31_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: motor_upper_leg_below_v1_Revolute_31
+  pid: {p: 20.0, i: 0.0, d: 0.2}
+
+motor_upper_leg_below_a_v1_Revolute_123_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: motor_upper_leg_below_a_v1_Revolute_123
+  pid: {p: 20.0, i: 0.0, d: 0.2}
+
+# ==========================================
+# HIPS (ROLL) 
+# ==========================================
+motor_upper_a_Rigid_35_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: motor_upper_a_Rigid_35
+  pid: {p: 25.0, i: 0.1, d: 0.2}
+
+motor_upper_b_Rigid_131_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: motor_upper_b_Rigid_131
+  pid: {p: 25.0, i: 0.1, d: 0.2}
+
+# ==========================================
+# KNEES
+# ==========================================
+leg_knee_motor_a_Revolute_74_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: leg_knee_motor_a_Revolute_74
+  pid: {p: 45.0, i: 0.2, d: 0.2}
+
+leg_knee_motor_v1_Revolute_82_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: leg_knee_motor_v1_Revolute_82
+  pid: {p: 45.0, i: 0.2, d: 0.2}
+
+# ==========================================
+# ANKLES (PITCH) 
+# ==========================================
+lower_leg_right_v1_Revolute_69_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: lower_leg_right_v1_Revolute_69
+  pid: {p: 25.0, i: 0.1, d: 0.2}
+
+Lower_Leg_v2_v1_Revolute_91_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: Lower_Leg_v2_v1_Revolute_91
+  pid: {p: 25.0, i: 0.1, d: 0.2}
+
+# ==========================================
+# ANKLES (ROLL) 
+# ==========================================
+ankle_joint_ring1_a_Revolute_119_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: ankle_joint_ring1_a_Revolute_119
+  pid: {p: 20.0, i: 0.1, d: 0.2}
+
+ankle_joint_ring1_b_Revolute_115_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: ankle_joint_ring1_b_Revolute_115
+  pid: {p: 20.0, i: 0.1, d: 0.2}

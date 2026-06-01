@@ -1,0 +1,37 @@
+<launch>
+  <!-- Load URDF into the parameter server -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find chronos_balance)/urdf/chronos.urdf'" />
+
+  <!-- Start Gazebo with an empty world (paused, physics off) -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="true"/>          <!-- start simulation paused -->
+    <arg name="use_sim_time" value="true"/>    <!-- use simulation clock -->
+    <arg name="gui" value="true"/>             <!-- open Gazebo GUI -->
+    <arg name="recording" value="false"/>
+  </include>
+
+  <!-- Spawn the robot in Gazebo -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
+        args="-param robot_description -urdf -model chronos -x 0 -y 0 -z .345 -R 1.57079"
+        output="screen" />
+
+  <!-- Load controller configurations -->
+  <rosparam file="$(find chronos_balance)/config/chronos_control.yaml" command="load" />
+
+ <!-- Start controllers -->
+<node name="controller_spawner" pkg="controller_manager" type="spawner"
+      args="
+joint_state_controller
+motor_upper_leg_below_v1_Revolute_31_position_controller
+lower_leg_right_v1_Revolute_69_position_controller
+leg_knee_motor_a_Revolute_74_position_controller
+leg_knee_motor_v1_Revolute_82_position_controller
+Lower_Leg_v2_v1_Revolute_91_position_controller
+ankle_joint_ring1_b_Revolute_115_position_controller
+ankle_joint_ring1_a_Revolute_119_position_controller
+motor_upper_leg_below_a_v1_Revolute_123_position_controller
+motor_upper_a_Rigid_35_position_controller
+motor_upper_b_Rigid_131_position_controller
+"
+      output="screen" />
+</launch>

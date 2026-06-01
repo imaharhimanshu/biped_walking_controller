@@ -1,0 +1,1128 @@
+<robot name="chronos">
+    <link name="motor_mx2L">
+        <inertial>
+            <origin xyz="-5.6522082427790113e-08 -0.020555762477523203 -0.014758994299780143" rpy="0.0 -9.495567745759799e-66 0.0" />
+            <mass value="0.47580795836458334" />
+            <inertia ixx="0.0001897586606890156" iyy="0.0001575391670494558" izz="0.00010384391047283528" ixy="-1.0661006001611015e-09" iyz="4.171260414954219e-06" ixz="2.0110208517040733e-09" />
+        </inertial>
+        <visual name="motor_mx2L_visual">
+            <origin xyz="0.07501570176619629 -0.3745598895623257 0.22557026365620686" rpy="3.127268897151319 -2.3411986808127356e-05 3.1289109011922998" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/motor_mx2L.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="motor_mx2L_collision">
+            <origin xyz="0.07501570176619629 -0.3745598895623257 0.22557026365620686" rpy="3.127268897151319 -2.3411986808127356e-05 3.1289109011922998" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/motor_mx2L.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="motor_mx2R">
+        <inertial>
+            <origin xyz="-5.704140859208451e-08 -0.02055576183836486 -0.014758994860178802" rpy="0.0 -9.495567745759799e-66 0.0" />
+            <mass value="0.4758079584031028" />
+            <inertia ixx="0.00018975870874078649" iyy="0.00015753911638176007" izz="0.00010384387769192535" ixy="-1.1590770496172629e-09" iyz="4.171282826901517e-06" ixz="2.0741366516169344e-09" />
+        </inertial>
+        <visual name="motor_mx2R_visual">
+            <origin xyz="0.162897701786426 -0.37456136462365025 0.22557019687714533" rpy="3.127268897151319 -2.3411986808123093e-05 3.128910901192301" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/motor_mx2R.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="motor_mx2R_collision">
+            <origin xyz="0.162897701786426 -0.37456136462365025 0.22557019687714533" rpy="3.127268897151319 -2.3411986808123093e-05 3.128910901192301" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/motor_mx2R.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="motor_bracket_a">
+        <inertial>
+            <origin xyz="-0.31634090136271636 -0.4779800513966333 0.06553511359550282" rpy="0.0 -0.0 0.0" />
+            <mass value="0.23368391804045266" />
+            <inertia ixx="0.0003487435319698244" iyy="0.00017363338403524053" izz="0.0002935167509461739" ixy="-1.4590461585445302e-08" iyz="5.559870605593639e-05" ixz="1.15202875364262e-08" />
+        </inertial>
+        <visual name="motor_bracket_a_visual">
+            <origin xyz="-0.24340047520169283 -0.7261819051311471 -0.24436409652801433" rpy="1.5564722734354768 -0.012681752394016548 -3.141569239720221" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/motor_bracket_a.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="motor_bracket_a_collision">
+            <origin xyz="-0.24340047520169283 -0.7261819051311471 -0.24436409652801433" rpy="1.5564722734354768 -0.012681752394016548 -3.141569239720221" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/motor_bracket_a.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="motor_bracket_b">
+        <inertial>
+            <origin xyz="-0.1430839513953675 -0.4790948220842655 0.06551972275487561" rpy="0.0 -0.0 0.0" />
+            <mass value="0.23368391804045266" />
+            <inertia ixx="0.00034874353197037605" iyy="0.00017363338403487277" izz="0.00029351675094610105" ixy="-1.4590461822235057e-08" iyz="5.5598706056047414e-05" ixz="1.1520287495660197e-08" />
+        </inertial>
+        <visual name="motor_bracket_b_visual">
+            <origin xyz="-0.07014352523434174 -0.7272966758187787 -0.24437948736864268" rpy="1.5564722734354741 -0.012681752394017672 -3.141569239720221" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/motor_bracket_b.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="motor_bracket_b_collision">
+            <origin xyz="-0.07014352523434174 -0.7272966758187787 -0.24437948736864268" rpy="1.5564722734354741 -0.012681752394017672 -3.141569239720221" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/motor_bracket_b.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="motor_upper_a">
+        <inertial>
+            <origin xyz="0.015209766213301307 -0.015391734911888921 0.015493083011493667" rpy="0.0 -3.388131789017202e-21 0.0" />
+            <mass value="0.34532389787865936" />
+            <inertia ixx="9.878415769591356e-05" iyy="8.183259382588449e-05" izz="6.115506697764989e-05" ixy="1.3341410933929639e-08" iyz="-2.956727393304745e-06" ixz="-5.486134168706815e-07" />
+        </inertial>
+        <visual name="motor_upper_a_visual">
+            <origin xyz="-0.1479082463709332 -0.2889059445177528 0.29274501392888486" rpy="-1.5743739348662287 0.012658611786859921 0.00011286496484090239" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/motor_upper_a.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="motor_upper_a_collision">
+            <origin xyz="-0.1479082463709332 -0.2889059445177528 0.29274501392888486" rpy="-1.5743739348662287 0.012658611786859921 0.00011286496484090239" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/motor_upper_a.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="motor_upper_b">
+        <inertial>
+            <origin xyz="0.015209766180666478 -0.015391734215260638 0.015493082178301806" rpy="-1.734723475976807e-18 -0.0 0.0" />
+            <mass value="0.34532389787865936" />
+            <inertia ixx="9.878415769557355e-05" iyy="8.183259381453292e-05" izz="6.115506698926782e-05" ixy="1.3341410548782186e-08" iyz="-2.9567273932861397e-06" ixz="-5.486134168291185e-07" />
+        </inertial>
+        <visual name="motor_upper_b_visual">
+            <origin xyz="-0.14790824640354505 -0.288905943821064 0.29274501309568207" rpy="-1.5743739348662271 0.012658611786858807 0.00011286496484089211" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/motor_upper_b.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="motor_upper_b_collision">
+            <origin xyz="-0.14790824640354505 -0.288905943821064 0.29274501309568207" rpy="-1.5743739348662271 0.012658611786858807 0.00011286496484089211" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/motor_upper_b.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="outer_ball_bearing">
+        <inertial>
+            <origin xyz="6.712164335453963e-10 0.0013809590738552303 9.899920880123148e-06" rpy="-1.734723475976807e-18 -0.0 1.0587911840678757e-22" />
+            <mass value="0.009488893653327652" />
+            <inertia ixx="5.478193889416874e-07" iyy="1.082929481330088e-06" izz="5.478468828117335e-07" ixy="-2.839684239769066e-13" iyz="3.835261716540335e-09" ixz="-5.362125079657235e-15" />
+        </inertial>
+        <visual name="outer_ball_bearing_visual">
+            <origin xyz="0.22701738564665228 -0.048115651130061145 -0.2989941895625983" rpy="1.570669730130266 -0.01983107811803498 1.570957206532294" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/outer_ball_bearing.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="outer_ball_bearing_collision">
+            <origin xyz="0.22701738564665228 -0.048115651130061145 -0.2989941895625983" rpy="1.570669730130266 -0.01983107811803498 1.570957206532294" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/outer_ball_bearing.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="bearing_axle_b">
+        <inertial>
+            <origin xyz="-0.14052464317965163 -0.49162303908152455 0.08152056799619971" rpy="0.0 -0.0 0.0" />
+            <mass value="0.005178298951884693" />
+            <inertia ixx="1.1373648643080506e-07" iyy="5.6838147068040065e-08" izz="1.137357654666367e-07" ixy="-2.5390606365463184e-12" iyz="-2.0357715822339265e-10" ixz="-8.850301676417704e-15" />
+        </inertial>
+        <visual name="bearing_axle_b_visual">
+            <origin xyz="-0.2177162415047721 -0.6877435082145544 0.003596924154233605" rpy="1.5851203801543192 0.012681752394017524 2.3413869572187596e-05" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/bearing_axle_b.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="bearing_axle_b_collision">
+            <origin xyz="-0.2177162415047721 -0.6877435082145544 0.003596924154233605" rpy="1.5851203801543192 0.012681752394017524 2.3413869572187596e-05" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/bearing_axle_b.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="outer_ball_bearing_b">
+        <inertial>
+            <origin xyz="4.891490581471203e-09 -0.00421890042207373 -3.024179980183561e-05" rpy="0.0 -0.0 0.0" />
+            <mass value="0.009488893653327652" />
+            <inertia ixx="5.478193891021492e-07" iyy="1.0829294816986422e-06" izz="5.47846882710543e-07" ixy="-2.8396849123153835e-13" iyz="3.835261727732509e-09" ixz="-5.358391020278504e-15" />
+        </inertial>
+        <visual name="outer_ball_bearing_b_visual">
+            <origin xyz="0.22701738986697606 -0.05371551062601961 -0.29903433128328233" rpy="1.5706697301302137 -0.01983107811797458 1.5709572065323008" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/outer_ball_bearing_b.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="outer_ball_bearing_b_collision">
+            <origin xyz="0.22701738986697606 -0.05371551062601961 -0.29903433128328233" rpy="1.5706697301302137 -0.01983107811797458 1.5709572065323008" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/outer_ball_bearing_b.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="base_link">
+        <inertial>
+            <origin xyz="-0.011778417044754857 0.0015000000000003064 -0.040835753340741555" rpy="0.0 0.0 0.0" />
+            <mass value="0.26579790915917245" />
+            <inertia ixx="0.0001293554926805798" iyy="0.0006414469757224287" izz="0.000512490179905589" ixy="-7.238745221596476e-18" iyz="-8.823965728021674e-18" ixz="2.4726794891313597e-07" />
+        </inertial>
+        <visual name="base_link_visual">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/base_link.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="base_link_collision">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/base_link.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="motor_upper_leg_below_a-v1">
+        <inertial>
+            <origin xyz="0.017691234082444947 0.019036803760310583 -0.017139907953109976" rpy="0.0 5.010199883009187e-19 0.0" />
+            <mass value="0.5660198700931592" />
+            <inertia ixx="0.00023301596671950378" iyy="0.0001323316431234326" izz="0.00019475274307636245" ixy="-1.0575967679307387e-06" iyz="-7.1479090506175e-06" ixz="3.551466904712038e-07" />
+        </inertial>
+        <visual name="motor_upper_leg_below_a-v1_visual">
+            <origin xyz="0.24287888255392795 0.30046305471202356 0.06109852436183258" rpy="2.348431397848506 1.5529697431953742 -0.7914523380800792" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/motor_upper_leg_below_a_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="motor_upper_leg_below_a-v1_collision">
+            <origin xyz="0.24287888255392795 0.30046305471202356 0.06109852436183258" rpy="2.348431397848506 1.5529697431953742 -0.7914523380800792" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/motor_upper_leg_below_a_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="motor_upper_leg_below-v1">
+        <inertial>
+            <origin xyz="0.017316379665067015 -0.01897478670851175 -0.017582687526843586" rpy="0.0 1.2345505206231427e-18 0.0" />
+            <mass value="0.5660198700931592" />
+            <inertia ixx="0.00023301491566573454" iyy="0.00013232928904075548" izz="0.00019475614823708122" ixy="1.10651751422951e-06" iyz="7.123732271017287e-06" ixz="-5.084925667544154e-07" />
+        </inertial>
+        <visual name="motor_upper_leg_below-v1_visual">
+            <origin xyz="-0.20177180707284254 -0.3051935316843975 0.06058802627456523" rpy="2.3390120875624105 1.552801036124793 2.3622120985543313" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/motor_upper_leg_below_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="motor_upper_leg_below-v1_collision">
+            <origin xyz="-0.20177180707284254 -0.3051935316843975 0.06058802627456523" rpy="2.3390120875624105 1.552801036124793 2.3622120985543313" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/motor_upper_leg_below_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="battery_bracket_upper-v1">
+        <inertial>
+            <origin xyz="0.004226538848882058 0.012175347981188515 0.017054691730030724" rpy="2.710505431213761e-20 -2.6469779601696886e-19 0.0" />
+            <mass value="0.022654809940963756" />
+            <inertia ixx="6.500980256714622e-06" iyy="4.644120816788671e-06" izz="2.17010223545391e-06" ixy="6.485422539651506e-08" iyz="7.798723187638899e-10" ixz="5.4863467528546554e-08" />
+        </inertial>
+        <visual name="battery_bracket_upper-v1_visual">
+            <origin xyz="0.17703134480933178 0.38735489323985633 0.05120991963522421" rpy="2.3484313864045103 1.5529697431267275 -0.7914523342737684" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/battery_bracket_upper_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="battery_bracket_upper-v1_collision">
+            <origin xyz="0.17703134480933178 0.38735489323985633 0.05120991963522421" rpy="2.3484313864045103 1.5529697431267275 -0.7914523342737684" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/battery_bracket_upper_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="battery_bracket_upper_a">
+        <inertial>
+            <origin xyz="0.004657158578638025 0.012174772746858409 -0.01694258331189733" rpy="0.0 -2.642742795433417e-19 0.0" />
+            <mass value="0.022654809940963756" />
+            <inertia ixx="6.500980257408275e-06" iyy="4.644120816654885e-06" izz="2.170102236158547e-06" ixy="6.485422537830163e-08" iyz="7.798723044792599e-10" ixz="5.486346750767736e-08" />
+        </inertial>
+        <visual name="battery_bracket_upper_a_visual">
+            <origin xyz="0.17746196453907417 0.3873543180054638 0.01721264459329362" rpy="2.34843138640462 1.5529697431267189 -0.7914523342732414" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/battery_bracket_upper_a.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="battery_bracket_upper_a_collision">
+            <origin xyz="0.17746196453907417 0.3873543180054638 0.01721264459329362" rpy="2.34843138640462 1.5529697431267189 -0.7914523342732414" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/battery_bracket_upper_a.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="ball_bearing-v1">
+        <inertial>
+            <origin xyz="2.3434043150487584e-05 3.1792925234697125e-08 0.0018498532398270485" rpy="0.0 1.6644197413547002e-19 0.0" />
+            <mass value="0.0024636840828348864" />
+            <inertia ixx="3.053109427337595e-08" iyy="3.052709874409201e-08" izz="5.5428897036190816e-08" ixy="5.305191657598533e-15" iyz="4.1843949623735986e-13" ixz="3.154110846255451e-10" />
+        </inertial>
+        <visual name="ball_bearing-v1_visual">
+            <origin xyz="0.015212825955991676 -0.019837666268099064 -0.00019235364511249742" rpy="0.0001192998809506365 0.01266496932393515 0.010746294544960648" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/ball_bearing_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="ball_bearing-v1_collision">
+            <origin xyz="0.015212825955991676 -0.019837666268099064 -0.00019235364511249742" rpy="0.0001192998809506365 0.01266496932393515 0.010746294544960648" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/ball_bearing_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="outer_ball_bearing2-v1">
+        <inertial>
+            <origin xyz="-3.063890323257823e-05 -4.4349254615383416e-08 -0.002418807669205627" rpy="0.0 1.7237120476625012e-19 0.0" />
+            <mass value="0.009488893653327652" />
+            <inertia ixx="5.479052352602678e-07" iyy="5.47819388153985e-07" izz="1.082871129700426e-06" ixy="1.1186275834782703e-13" iyz="8.991262017933409e-12" ixz="6.777069925709476e-09" />
+        </inertial>
+        <visual name="outer_ball_bearing2-v1_visual">
+            <origin xyz="0.3367411752976474 -0.16385845728298754 -0.058324251959986945" rpy="-3.037325950914143 -1.5684698752188073 -1.47726456843161" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/outer_ball_bearing2_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="outer_ball_bearing2-v1_collision">
+            <origin xyz="0.3367411752976474 -0.16385845728298754 -0.058324251959986945" rpy="-3.037325950914143 -1.5684698752188073 -1.47726456843161" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/outer_ball_bearing2_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="outer_ball_bearing1-v1">
+        <inertial>
+            <origin xyz="3.063952517262436e-05 3.6148201232322207e-08 0.002418812082567854" rpy="0.0 1.6644197413547002e-19 0.0" />
+            <mass value="0.009488893653327652" />
+            <inertia ixx="5.479052276498881e-07" iyy="5.478193959036123e-07" izz="1.0828711297506436e-06" ixy="1.1233342368375425e-13" iyz="8.989869958880401e-12" ixz="6.777071313370723e-09" />
+        </inertial>
+        <visual name="outer_ball_bearing1-v1_visual">
+            <origin xyz="0.1419964411026183 -0.3474922898347032 0.052269063798258096" rpy="2.494986395254552 1.5552818788084917 2.2313202144476034" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/outer_ball_bearing1_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="outer_ball_bearing1-v1_collision">
+            <origin xyz="0.1419964411026183 -0.3474922898347032 0.052269063798258096" rpy="2.494986395254552 1.5552818788084917 2.2313202144476034" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/outer_ball_bearing1_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="left_leg_bearing_axle-v1">
+        <inertial>
+            <origin xyz="0.004423644005999492 -7.098707115460456e-09 7.148710743365428e-08" rpy="0.0 -0.0 0.0" />
+            <mass value="0.005178298951884693" />
+            <inertia ixx="5.683741858034889e-08" iyy="1.1373649381758288e-07" izz="1.1373648663664084e-07" ixy="4.279126423860358e-14" iyz="7.908170646105416e-16" ixz="-9.555667346804186e-13" />
+        </inertial>
+        <visual name="left_leg_bearing_axle-v1_visual">
+            <origin xyz="-0.19197647830638975 -0.07110717318240747 -0.0828530420438754" rpy="1.5814769665478867 -1.4817406294283784 -1.5707303770522631" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/left_leg_bearing_axle_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="left_leg_bearing_axle-v1_collision">
+            <origin xyz="-0.19197647830638975 -0.07110717318240747 -0.0828530420438754" rpy="1.5814769665478867 -1.4817406294283784 -1.5707303770522631" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/left_leg_bearing_axle_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="upper_leg_a-v1">
+        <inertial>
+            <origin xyz="-0.00040783506308361694 -0.04526713278785955 0.02368511255336011" rpy="2.710505431213761e-20 8.089164646278568e-20 -1.734723475976807e-18" />
+            <mass value="0.23053636913542203" />
+            <inertia ixx="0.00018917796688219958" iyy="0.00012218376917169326" izz="0.00010440776211131066" ixy="-1.2355166330916e-06" iyz="-6.665096692477141e-07" ixz="-1.0488460056506995e-06" />
+        </inertial>
+        <visual name="upper_leg_a-v1_visual">
+            <origin xyz="0.21848498430432353 -0.3030121105901559 -0.034231910721676785" rpy="2.3766327551788926 1.5530255911502913 2.349694093090068" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/upper_leg_a_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="upper_leg_a-v1_collision">
+            <origin xyz="0.21848498430432353 -0.3030121105901559 -0.034231910721676785" rpy="2.3766327551788926 1.5530255911502913 2.349694093090068" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/upper_leg_a_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="upper_leg-v1">
+        <inertial>
+            <origin xyz="-0.0008889795542436474 -0.045269630259228644 -0.02366716224081552" rpy="-2.710505431213761e-20 -1.6623021589865644e-18 0.0" />
+            <mass value="0.23053636913542203" />
+            <inertia ixx="0.000189193742998443" iyy="0.00012216853051601577" izz="0.0001044072246520266" ixy="-6.849190986603622e-07" iyz="6.892408304476153e-07" ixz="-1.0295360663561094e-06" />
+        </inertial>
+        <visual name="upper_leg-v1_visual">
+            <origin xyz="-0.2270737868742885 -0.2966165497096449 0.03435077083452917" rpy="-0.7806100117860437 -1.5527452921020293 0.778901082862795" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/upper_leg_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="upper_leg-v1_collision">
+            <origin xyz="-0.2270737868742885 -0.2966165497096449 0.03435077083452917" rpy="-0.7806100117860437 -1.5527452921020293 0.778901082862795" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/upper_leg_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="battery_support-v1">
+        <inertial>
+            <origin xyz="-2.559542737756715e-08 -0.0025924642007404586 0.00365791246677329" rpy="0.0 -0.0 5.293955920339378e-23" />
+            <mass value="0.027891202513890205" />
+            <inertia ixx="3.4753294932511132e-06" iyy="8.221972795232258e-06" izz="5.1384526668130255e-06" ixy="2.6285882296750196e-12" iyz="1.4395114906712448e-08" ixz="-9.735565900064584e-12" />
+        </inertial>
+        <visual name="battery_support-v1_visual">
+            <origin xyz="-0.07502440230203654 -0.25110508695268347 0.2886943017642176" rpy="-1.574373934865192 0.012658611786868341 0.00011286496491905425" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/battery_support_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="battery_support-v1_collision">
+            <origin xyz="-0.07502440230203654 -0.25110508695268347 0.2886943017642176" rpy="-1.574373934865192 0.012658611786868341 0.00011286496491905425" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/battery_support_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="leg_knee_motor_a">
+        <inertial>
+            <origin xyz="0.010303403677829906 -0.030284145867738275 -0.016768570092226476" rpy="2.710505431213761e-20 -4.345279019414561e-19 -1.734723475976807e-18" />
+            <mass value="0.5660198700847786" />
+            <inertia ixx="0.00023283140518593615" iyy="0.0001323183075153752" izz="0.00019459847896667113" ixy="-1.3556095934232702e-06" iyz="7.06654433560884e-06" ixz="-3.6636063408797637e-07" />
+        </inertial>
+        <visual name="leg_knee_motor_a_visual">
+            <origin xyz="0.23069710542771307 -0.23553679508356884 -0.024659080852542398" rpy="2.3766327551803657 1.5530255911502886 2.3496940930929053" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/leg_knee_motor_a.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="leg_knee_motor_a_collision">
+            <origin xyz="0.23069710542771307 -0.23553679508356884 -0.024659080852542398" rpy="2.3766327551803657 1.5530255911502886 2.3496940930929053" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/leg_knee_motor_a.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="leg_knee_motor-v1">
+        <inertial>
+            <origin xyz="0.01083005454843672 -0.030245723701030514 0.016501900992302386" rpy="0.0 -4.336808689942018e-19 0.0" />
+            <mass value="0.5660198700847786" />
+            <inertia ixx="0.0002328265668200219" iyy="0.00013231755819358997" izz="0.00019460406665640733" ixy="-1.5245108105472498e-06" iyz="-7.0284586917809626e-06" ixz="-5.682172143894005e-07" />
+        </inertial>
+        <visual name="leg_knee_motor-v1_visual">
+            <origin xyz="-0.2153518621120987 -0.2290986942155089 0.024472511667015865" rpy="-0.7806100117834576 -1.552745292102022 0.7789010828598003" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/leg_knee_motor_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="leg_knee_motor-v1_collision">
+            <origin xyz="-0.2153518621120987 -0.2290986942155089 0.024472511667015865" rpy="-0.7806100117834576 -1.552745292102022 0.7789010828598003" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/leg_knee_motor_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="leg_ankle_motor_av1">
+        <inertial>
+            <origin xyz="0.00048757855727270537 -0.011281958453564212 0.025565574073650503" rpy="-2.710505431213761e-20 5.217722955086489e-19 0.0" />
+            <mass value="0.34532380048520933" />
+            <inertia ixx="9.880925311860676e-05" iyy="6.120864278089951e-05" izz="8.180135779052527e-05" ixy="6.05083652842851e-07" iyz="3.0832822866559505e-06" ixz="-2.1394948558834924e-07" />
+        </inertial>
+        <visual name="leg_ankle_motor_av1_visual">
+            <origin xyz="0.2239943457615943 0.07243038527142484 0.08780622941820446" rpy="-2.3390121479639046 -1.552801035226859 -0.7793805058646708" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/leg_ankle_motor_av1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="leg_ankle_motor_av1_collision">
+            <origin xyz="0.2239943457615943 0.07243038527142484 0.08780622941820446" rpy="-2.3390121479639046 -1.552801035226859 -0.7793805058646708" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/leg_ankle_motor_av1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="leg_ankle_motor-v1">
+        <inertial>
+            <origin xyz="-0.00046019759959165185 0.01128207151809285 0.020215112475695296" rpy="0.0 -4.129285617864714e-19 0.0" />
+            <mass value="0.34532380048520933" />
+            <inertia ixx="9.88044419200966e-05" iyy="6.121296741637052e-05" izz="8.18018443531586e-05" ixy="7.396123314124626e-07" iyz="-3.080872188987718e-06" ixz="2.2493050206681498e-07" />
+        </inertial>
+        <visual name="leg_ankle_motor-v1_visual">
+            <origin xyz="-0.22366606745123221 -0.07322447633314759 0.08246231072442102" rpy="-2.335913357711505 -1.5527452932268262 2.362691617555046" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/leg_ankle_motor_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="leg_ankle_motor-v1_collision">
+            <origin xyz="-0.22366606745123221 -0.07322447633314759 0.08246231072442102" rpy="-2.335913357711505 -1.5527452932268262 2.362691617555046" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/leg_ankle_motor_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Lower_Leg_v2-v1">
+        <inertial>
+            <origin xyz="0.000927326048418955 -0.05580112192380922 0.02682103867662377" rpy="-2.710505431213761e-20 -2.1671337955501274e-18 0.0" />
+            <mass value="0.3110955036381271" />
+            <inertia ixx="0.0004447115363330312" iyy="0.00020437536395676934" izz="0.00030693128466130655" ixy="-4.64530488781074e-06" iyz="-7.67282249928984e-06" ixz="-2.1388461787309053e-06" />
+        </inertial>
+        <visual name="Lower_Leg_v2-v1_visual">
+            <origin xyz="0.22009156738621066 -0.19107892459778333 -0.0500428383139107" rpy="-0.8056793972097955 -1.552745291102478 0.7789011373846635" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/Lower_Leg_v2_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="Lower_Leg_v2-v1_collision">
+            <origin xyz="0.22009156738621066 -0.19107892459778333 -0.0500428383139107" rpy="-0.8056793972097955 -1.552745291102478 0.7789011373846635" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/Lower_Leg_v2_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="biped_ankle_a-v1">
+        <inertial>
+            <origin xyz="4.32661665594658e-05 -0.04102455296859105 -0.018542634157155912" rpy="-1.7347234759768075e-18 -0.0 1.0587911840678754e-22" />
+            <mass value="0.6890395194323967" />
+            <inertia ixx="0.0011332506520754962" iyy="0.00048205973076352506" izz="0.0011647512583853807" ixy="4.595058415121719e-07" iyz="0.00016957786362313852" ixz="-3.424512392344654e-07" />
+        </inertial>
+        <visual name="biped_ankle_a-v1_visual">
+            <origin xyz="-0.17473511889148538 0.11811400619805267 0.08389774545093212" rpy="1.567218726193892 -0.012658611881238343 -0.00011286496292624529" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/biped_ankle_a_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="biped_ankle_a-v1_collision">
+            <origin xyz="-0.17473511889148538 0.11811400619805267 0.08389774545093212" rpy="1.567218726193892 -0.012658611881238343 -0.00011286496292624529" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/biped_ankle_a_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="lower_leg_right-v1">
+        <inertial>
+            <origin xyz="0.0002476979454345951 -0.0558020303186699 -0.026834049088233395" rpy="-2.710505431213761e-20 -4.324103195733203e-19 0.0" />
+            <mass value="0.31109549893505384" />
+            <inertia ixx="0.00044473145290201507" iyy="0.00020437587932723998" izz="0.00030691083639787276" ixy="-4.449411872820636e-06" iyz="7.791466908443451e-06" ixz="-1.3524923872375495e-06" />
+        </inertial>
+        <visual name="lower_leg_right-v1_visual">
+            <origin xyz="0.22128857964632997 -0.19107734575037902 0.04445845897357028" rpy="2.376632695333881 1.5530255901662384 2.349694036832878" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/lower_leg_right_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="lower_leg_right-v1_collision">
+            <origin xyz="0.22128857964632997 -0.19107734575037902 0.04445845897357028" rpy="2.376632695333881 1.5530255901662384 2.349694036832878" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/lower_leg_right_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="leg_bearing_a-v1">
+        <inertial>
+            <origin xyz="-0.003952052140648555 -0.007642620287409958 0.015051394891377443" rpy="0.0 -1.3095129364551483e-18 0.0" />
+            <mass value="0.01108393901132922" />
+            <inertia ixx="2.321063458824716e-06" iyy="1.7789905135165781e-06" izz="6.750674766495788e-07" ixy="-2.7960134098428944e-08" iyz="3.356197458191872e-10" ixz="-2.0852083478761346e-08" />
+        </inertial>
+        <visual name="leg_bearing_a-v1_visual">
+            <origin xyz="-0.20642921113298474 0.07425867311922575 0.09282169535099608" rpy="0.8056793462871792 1.552745292102028 -2.362691570733161" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/leg_bearing_a_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="leg_bearing_a-v1_collision">
+            <origin xyz="-0.20642921113298474 0.07425867311922575 0.09282169535099608" rpy="0.8056793462871792 1.552745292102028 -2.362691570733161" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/leg_bearing_a_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="leg_bearing_1-v1">
+        <inertial>
+            <origin xyz="-0.003681327545484514 0.011758325686013094 0.015047639013411161" rpy="0.0 5.0101998830091865e-19 -1.734723475976807e-18" />
+            <mass value="0.01108393901132922" />
+            <inertia ixx="2.32221951535985e-06" iyy="1.7778342545792127e-06" izz="6.750676790921573e-07" ixy="1.2386765096210325e-08" iyz="-1.75418205795551e-10" ixz="-2.086739532496597e-08" />
+        </inertial>
+        <visual name="leg_bearing_1-v1_visual">
+            <origin xyz="-0.2103256587749498 -0.06428188135046528 -0.05754057417194952" rpy="-0.7806099613705275 -1.5527452932268453 0.7789010360337164" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/leg_bearing_1_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="leg_bearing_1-v1_collision">
+            <origin xyz="-0.2103256587749498 -0.06428188135046528 -0.05754057417194952" rpy="-0.7806099613705275 -1.5527452932268453 0.7789010360337164" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/leg_bearing_1_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="foot_motor-v1">
+        <inertial>
+            <origin xyz="-0.01730066876475389 0.017541997566075107 -0.024684582569889476" rpy="1.734723475976807e-18 -0.0 5.293955920339377e-23" />
+            <mass value="0.5660198701230377" />
+            <inertia ixx="0.00023301067002832774" iyy="0.00019419348626609784" izz="0.00013250981733266653" ixy="7.853754964537345e-08" iyz="7.59389985885024e-06" ixz="-2.8036199154336157e-08" />
+        </inertial>
+        <visual name="foot_motor-v1_visual">
+            <origin xyz="-0.09250229499707821 0.2863844065522998 -0.11710269909349923" rpy="1.567218729791015 -0.012658610485160985 -0.00011286513738010002" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/foot_motor_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="foot_motor-v1_collision">
+            <origin xyz="-0.09250229499707821 0.2863844065522998 -0.11710269909349923" rpy="1.567218729791015 -0.012658610485160985 -0.00011286513738010002" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/foot_motor_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="foot_motor_a-v1">
+        <inertial>
+            <origin xyz="-0.017300660472505402 0.017541997966329905 -0.024684577420521985" rpy="1.734723475976807e-18 -0.0 5.293955920339377e-23" />
+            <mass value="0.5660198701230377" />
+            <inertia ixx="0.00023301067002399207" iyy="0.00019419348632096134" izz="0.00013250981727562353" ixy="7.853754403665757e-08" iyz="7.5938996364575115e-06" ixz="-2.8036059976850993e-08" />
+        </inertial>
+        <visual name="foot_motor_a-v1_visual">
+            <origin xyz="-0.09250228661050214 0.28638440661043396 -0.11710269501611988" rpy="1.5672187261938644 -0.012658611881251853 -0.00011286496291757918" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/foot_motor_a_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="foot_motor_a-v1_collision">
+            <origin xyz="-0.09250228661050214 0.28638440661043396 -0.11710269501611988" rpy="1.5672187261938644 -0.012658611881251853 -0.00011286496291757918" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/foot_motor_a_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="down_foot_bearing_a-v1">
+        <inertial>
+            <origin xyz="0.003952037850452434 0.007642580103242995 -0.015051389769694695" rpy="0.0 -1.3095129364551483e-18 0.0" />
+            <mass value="0.011084011226936016" />
+            <inertia ixx="2.321086254976613e-06" iyy="1.7790107625266829e-06" izz="6.750715734967526e-07" ixy="-2.7960946155175735e-08" iyz="3.3563533061167346e-10" ixz="-2.0852315395083104e-08" />
+        </inertial>
+        <visual name="down_foot_bearing_a-v1_visual">
+            <origin xyz="0.20642921008883458 -0.07425867577455283 -0.09282169047350385" rpy="-0.8056793462869943 -1.55274529210203 0.7789010828567363" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/down_foot_bearing_a_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="down_foot_bearing_a-v1_collision">
+            <origin xyz="0.20642921008883458 -0.07425867577455283 -0.09282169047350385" rpy="-0.8056793462869943 -1.55274529210203 0.7789010828567363" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/down_foot_bearing_a_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="down_foot_bearing-v1">
+        <inertial>
+            <origin xyz="0.003952037537653155 0.007642585198759031 -0.01505138807055717" rpy="0.0 5.0101998830091865e-19 -1.734723475976807e-18" />
+            <mass value="0.011084011226936016" />
+            <inertia ixx="2.321086255185156e-06" iyy="1.779010762314773e-06" izz="6.750715734928482e-07" ixy="-2.796094418555954e-08" iyz="3.3563684018960027e-10" ixz="-2.085231516949743e-08" />
+        </inertial>
+        <visual name="down_foot_bearing-v1_visual">
+            <origin xyz="0.20642921008171283 -0.07425866984253529 -0.09282168885945864" rpy="-0.805679295876644 -1.552745293226846 0.7789010360337021" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/down_foot_bearing_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="down_foot_bearing-v1_collision">
+            <origin xyz="0.20642921008171283 -0.07425866984253529 -0.09282168885945864" rpy="-0.805679295876644 -1.552745293226846 0.7789010360337021" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/down_foot_bearing_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="anklle_joint_axle-v1">
+        <inertial>
+            <origin xyz="4.1020966268234815e-09 -0.004423531936429406 -3.1706889688201127e-05" rpy="1.734723475976807e-18 3.3881317890172014e-21 0.0" />
+            <mass value="0.005178298951884693" />
+            <inertia ixx="1.13736486541922e-07" iyy="5.684034130382479e-08" izz="1.1373357114417703e-07" ixy="3.013135396921245e-14" iyz="-4.077886459346789e-10" ixz="2.608337604133048e-16" />
+        </inertial>
+        <visual name="anklle_joint_axle-v1_visual">
+            <origin xyz="0.07520130597466332 0.1914056343247137 0.08052620627030979" rpy="-1.5887093196400717 0.01265893671710873 3.141525110905625" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/anklle_joint_axle_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="anklle_joint_axle-v1_collision">
+            <origin xyz="0.07520130597466332 0.1914056343247137 0.08052620627030979" rpy="-1.5887093196400717 0.01265893671710873 3.141525110905625" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/anklle_joint_axle_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="left_leg_bearing_axle_c-v1">
+        <inertial>
+            <origin xyz="5.798927400491039e-09 -0.004423532391364091 -3.170177947476649e-05" rpy="1.734723475976807e-18 3.3881317890172014e-21 0.0" />
+            <mass value="0.005178298951884693" />
+            <inertia ixx="1.1373648655730515e-07" iyy="5.684034129597886e-08" izz="1.1373357114014316e-07" ixy="3.0128763521296605e-14" iyz="-4.077888443421687e-10" ixz="-1.5632854241205047e-17" />
+        </inertial>
+        <visual name="left_leg_bearing_axle_c-v1_visual">
+            <origin xyz="0.07718098603000799 0.1925263880012023 -0.07584529345330346" rpy="1.5743744975078728 0.012658935321180972 3.141525110731168" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/left_leg_bearing_axle_c_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="left_leg_bearing_axle_c-v1_collision">
+            <origin xyz="0.07718098603000799 0.1925263880012023 -0.07584529345330346" rpy="1.5743744975078728 0.012658935321180972 3.141525110731168" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/left_leg_bearing_axle_c_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="biped_ankle-v1">
+        <inertial>
+            <origin xyz="4.326783191665129e-05 -0.04102455324936356 -0.01854263919610231" rpy="0.0 3.3881317890172014e-21 5.293955920339377e-23" />
+            <mass value="0.6890395194323967" />
+            <inertia ixx="0.0011332506520762278" iyy="0.0004820597295409156" izz="0.0011647512596057725" ixy="4.5950599533194543e-07" iyz="0.00016957786116728466" ixz="-3.424511718902088e-07" />
+        </inertial>
+        <visual name="biped_ankle-v1_visual">
+            <origin xyz="-0.1747351170626426 0.1181140055713325 0.08389774122834671" rpy="1.5672187297910427 -0.0126586104851475 -0.00011286513738697034" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/biped_ankle_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="biped_ankle-v1_collision">
+            <origin xyz="-0.1747351170626426 0.1181140055713325 0.08389774122834671" rpy="1.5672187297910427 -0.0126586104851475 -0.00011286513738697034" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/biped_ankle_v1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="ankle_joint_ring1_b">
+        <inertial>
+            <origin xyz="-2.88402810966204e-09 -0.001380956522109642 -9.895681502145592e-06" rpy="1.734723475976807e-18 -0.0 0.0" />
+            <mass value="0.009488893653333197" />
+            <inertia ixx="5.478193828542766e-07" iyy="1.082929482328094e-06" izz="5.478468862566673e-07" ixy="2.8410720082240396e-13" iyz="3.835264122433258e-09" ixz="4.650335858773274e-16" />
+        </inertial>
+        <visual name="ankle_joint_ring1_b_visual">
+            <origin xyz="-0.07520151524711334 -0.2030398603373663 0.07769912327353516" rpy="-1.574373927395895 0.012658611881250899 0.00011286496293578135" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/ankle_joint_ring1_b.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="ankle_joint_ring1_b_collision">
+            <origin xyz="-0.07520151524711334 -0.2030398603373663 0.07769912327353516" rpy="-1.574373927395895 0.012658611881250899 0.00011286496293578135" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/ankle_joint_ring1_b.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="ankle_joint_ring1_a">
+        <inertial>
+            <origin xyz="-1.1876121241982674e-09 -0.0013809560672525124 -9.900780904428253e-06" rpy="-1.734723475976807e-18 6.776263578034403e-21 -1.0587911840678754e-22" />
+            <mass value="0.009488893653333197" />
+            <inertia ixx="5.47819382849181e-07" iyy="1.08292948229825e-06" izz="5.47846886274618e-07" ixy="2.8403183322894596e-13" iyz="3.835266042252991e-09" ixz="4.595036911257595e-16" />
+        </inertial>
+        <visual name="ankle_joint_ring1_a_visual">
+            <origin xyz="-0.07520151363315573 -0.20303986017172918 0.07769911734380452" rpy="-1.574373923798744 0.012658610485160234 0.00011286513740037333" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/ankle_joint_ring1_a.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="ankle_joint_ring1_a_collision">
+            <origin xyz="-0.07520151363315573 -0.20303986017172918 0.07769911734380452" rpy="-1.574373923798744 0.012658610485160234 0.00011286513740037333" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/ankle_joint_ring1_a.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="battery_support_a">
+        <inertial>
+            <origin xyz="-2.5628059727722532e-08 -0.0025924635041069343 0.0036579116335814987" rpy="-1.734723475976807e-18 -0.0 0.0" />
+            <mass value="0.027891202513890205" />
+            <inertia ixx="3.4753294932363677e-06" iyy="8.221972795223342e-06" izz="5.138452666803733e-06" ixy="2.6285962961999087e-12" iyz="1.4395114898041054e-08" ixz="-9.735564837669064e-12" />
+        </inertial>
+        <visual name="battery_support_a_visual">
+            <origin xyz="-0.07502440233466891 -0.25110508625605055 0.28869430093102383" rpy="-1.5743739348651888 0.01265861178686712 0.00011286496492069965" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/battery_support_a.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="battery_support_a_collision">
+            <origin xyz="-0.07502440233466891 -0.25110508625605055 0.28869430093102383" rpy="-1.5743739348651888 0.01265861178686712 0.00011286496492069965" />
+            <geometry>
+                <mesh filename="package://chronos_balance/urdf/meshes/battery_support_a.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="motor_mx2R_Rigid_1" type="fixed">
+        <origin xyz="0.31634176000000724 -0.13368617000000002 -0.5002055100000001" rpy="-1.5707963267948966 -7.173782711359874e-50 -2.3822801641527197e-21" />
+        <parent link="motor_mx2R" />
+        <child link="motor_bracket_a" />
+    </joint>
+    <joint name="motor_mx2L_Rigid_2" type="fixed">
+        <origin xyz="0.14308481000000722 -0.13367078000000004 -0.5013202800000002" rpy="-1.5707963267948966 -7.173782711359874e-50 -2.3822801641527197e-21" />
+        <parent link="motor_mx2L" />
+        <child link="motor_bracket_b" />
+    </joint>
+    <joint name="motor_bracket_b_Rigid_9" type="fixed">
+        <origin xyz="-0.0025617799999999935 -0.03804556000000002 -0.03306877999999998" rpy="0.0 -0.0 0.0" />
+        <parent link="motor_bracket_b" />
+        <child link="bearing_axle_b" />
+    </joint>
+    <joint name="motor_bracket_b_Rigid_10" type="fixed">
+        <origin xyz="-0.14308662 -0.5310922400000001 0.04844670000000001" rpy="-0.010745583736695647 -2.2658692151483496e-05 -3.1415924100995474" />
+        <parent link="motor_bracket_b" />
+        <child link="outer_ball_bearing_b" />
+    </joint>
+    <joint name="base_link_Rigid_14" type="fixed">
+        <origin xyz="0.02850322032569581 0.0029999996388005456 -0.05763786138376755" rpy="3.1380141847375884 -2.1969872416418803e-05 3.1415758568736476" />
+        <parent link="base_link" />
+        <child link="motor_mx2R" />
+    </joint>
+    <joint name="motor_bracket_b_Rigid-20" type="fixed">
+        <origin xyz="-0.12808629 -0.44113745000000004 0.05230337000000002" rpy="3.1308470698530995 -2.2658692150262864e-05 -3.1415924100995474" />
+        <parent link="motor_bracket_b" />
+        <child link="motor_upper_a" />
+    </joint>
+    <joint name="motor_bracket_a_Rigid-21" type="fixed">
+        <origin xyz="-0.30134324 -0.44002268 0.05231876" rpy="3.1308470698530995 -2.265869215026284e-05 -3.1415924100995474" />
+        <parent link="motor_bracket_a" />
+        <child link="motor_upper_b" />
+    </joint>
+    <joint name="motor_upper_leg_below-v1_Rigid-28" type="fixed">
+        <origin xyz="0.017410709795372323 -0.0037827615773003134 0.004779932978560133" rpy="9.65767479009505e-11 1.7275679999834522e-13 7.625088645560331e-09" />
+        <parent link="motor_upper_leg_below-v1" />
+        <child link="ball_bearing-v1" />
+    </joint>
+    <joint name="motor_upper_leg_below_v1_Revolute_31" type="revolute">
+        <origin xyz="0.017391713086103256 -0.003782781575729146 0.0032800532750382415" rpy="9.65767479009505e-11 1.7275679999834522e-13 7.625088645560331e-09" />
+        <parent link="motor_upper_leg_below-v1" />
+        <child link="outer_ball_bearing1-v1" />
+        <axis xyz="0.012665426731662247 1.701119885449845e-05 0.9999197902663615" />
+        <limit lower="-0.785398" upper="0.785398" effort="1000000" velocity="1000000" />
+    </joint>
+    <joint name="ball_bearing-v1_Rigid-32" type="fixed">
+        <origin xyz="4.686841425368016e-05 6.01206298966872e-08 0.0036997031437442374" rpy="-1.583330994048457 1.5581313482598826 -3.141592653589793" />
+        <parent link="ball_bearing-v1" />
+        <child link="left_leg_bearing_axle-v1" />
+    </joint>
+    <joint name="motor_upper_a_Rigid_35" type="revolute">
+        <origin xyz="0.015052597863953734 -0.03553006036502085 0.004066191936267849" rpy="-1.864827736675068e-15 -8.877776037094845e-15 -4.224576824430823e-20" />
+        <parent link="motor_upper_a" />
+        <child link="battery_support-v1" />
+        <axis xyz="0 1 0"/>
+        <limit lower="-0.4" upper="0.4" effort="20" velocity="5" />
+    </joint>
+    <joint name="battery_support-v1_Rigid-36" type="fixed">
+        <origin xyz="-0.016999939570957724 -0.007172362648864041 -0.011051782994574459" rpy="1.5707963267948315 -0.0017892346412206907 -1.5581313685301181" />
+        <parent link="battery_support-v1" />
+        <child link="motor_upper_leg_below_a-v1" />
+    </joint>
+    <joint name="base_link_Rigid-44" type="fixed">
+        <origin xyz="-0.05687877970692431 0.0030000004769613754 -0.05763786069313166" rpy="3.1380141847375884 -2.1969872416418803e-05 3.1415758568736476" />
+        <parent link="base_link" />
+        <child link="motor_mx2L" />
+    </joint>
+    <joint name="leg_ankle_motor-v1_Rigid-51" type="fixed">
+        <origin xyz="-0.015921746064235763 0.029255079393629778 0.035300687925611494" rpy="-3.141592653589793 -1.0281328265420063e-16 -3.261280134836398e-16" />
+        <parent link="leg_ankle_motor-v1" />
+        <child link="leg_bearing_1-v1" />
+    </joint>
+    <joint name="lower_leg_right_v1_Revolute_69" type="revolute">
+        <origin xyz="-0.0019647053951316806 -0.11607948264677313 -0.007420762857012981" rpy="-3.1415926535897833 -2.5682872864686958e-14 7.877587471227798e-13" />
+        <parent link="lower_leg_right-v1" />
+        <child link="leg_ankle_motor-v1" />
+        <axis xyz="-0.012665852865054165 1.6986130176459404e-05 0.9999197848691025" />
+        <limit lower="-0.523599" upper="0.523599" effort="1000000" velocity="1000000" />
+    </joint>
+    <joint name="upper_leg-v1_Rigid-73" type="fixed">
+        <origin xyz="-0.011933590790920335 -0.0681512870696988 -0.006116325897159634" rpy="-6.059551731912861e-15 -2.4962210033382948e-14 -4.784141832692157e-13" />
+        <parent link="upper_leg-v1" />
+        <child link="leg_knee_motor_a" />
+    </joint>
+    <joint name="leg_knee_motor_a_Revolute_74" type="revolute">
+        <origin xyz="0.01040718270314528 -0.04547117330687211 0.01086982853583038" rpy="1.6263032587282567e-19 4.770066042462592e-18 1.734723475976807e-18" />
+        <parent link="leg_knee_motor_a" />
+        <child link="lower_leg_right-v1" />
+        <axis xyz="0.012665852865028469 1.69861301764604e-05 0.9999197848691028" />
+        <limit lower="-1.570796" upper="0.0" effort="1000000" velocity="1000000" />
+    </joint>
+    <joint name="motor_upper_leg_below_a-v1_Rigid-75" type="fixed">
+        <origin xyz="0.03459583860688417 -0.0003098853626108422 0.00043820898423484243" rpy="9.65767439436126e-11 -1.7276031814969161e-13 -7.625088341983723e-09" />
+        <parent link="motor_upper_leg_below_a-v1" />
+        <child link="battery_bracket_upper_a" />
+    </joint>
+    <joint name="leg_knee_motor_v1_Revolute_82" type="revolute">
+        <origin xyz="0.010291179794335328 -0.04543450891547863 -0.011130476748489002" rpy="8.131516293641283e-20 -2.1684043449710096e-18 3.469446951953616e-18" />
+        <parent link="leg_knee_motor-v1" />
+        <child link="Lower_Leg_v2-v1" />
+        <axis xyz="-0.012665852865028467 -1.698613017646039e-05 -0.9999197848691028" />
+        <limit lower="0.0" upper="1.570796" effort="1000000" velocity="1000000" />
+    </joint>
+    <joint name="Lower_Leg_v2_v1_Revolute_91" type="revolute">
+        <origin xyz="-0.0018703801936252517 -0.11607935278232909 2.563974803702962e-05" rpy="-0.0003174608003424252 -3.980556913169087e-06 -0.02506731993457346" />
+        <parent link="Lower_Leg_v2-v1" />
+        <child link="leg_ankle_motor_av1" />
+        <axis xyz="-0.012665428134416875 -1.7011198851669015e-05 -0.9999197902485935" />
+        <limit lower="-0.523599" upper="0.523599" effort="1000000" velocity="1000000" />
+    </joint>
+    <joint name="leg_ankle_motor_av1_Rigid-100" type="fixed">
+        <origin xyz="-0.014703540213555062 -0.01268685307214839 0.011037320254250483" rpy="0.0003174608355128482 -3.977751804135308e-06 0.025067319935806454" />
+        <parent link="leg_ankle_motor_av1" />
+        <child link="leg_bearing_a-v1" />
+    </joint>
+    <joint name="leg_ankle_motor_av1_Rigid-101" type="fixed">
+        <origin xyz="0.015884732148590715 -0.02930897718971395 0.0406527359049776" rpy="0.0003174608355128482 -3.977751804135308e-06 0.025067319935806454" />
+        <parent link="leg_ankle_motor_av1" />
+        <child link="down_foot_bearing_a-v1" />
+    </joint>
+    <joint name="leg_ankle_motor-v1_Rigid-104" type="fixed">
+        <origin xyz="0.014447108491503968 0.029737959038680588 0.006062973676552552" rpy="-3.141592653589793 -1.0281328265420063e-16 -3.261280134836398e-16" />
+        <parent link="leg_ankle_motor-v1" />
+        <child link="down_foot_bearing-v1" />
+    </joint>
+    <joint name="down_foot_bearing_a-v1_Rigid-114" type="fixed">
+        <origin xyz="0.0062216114847623415 0.008147488650753201 -0.01508014389345874" rpy="1.5457275544345477 -1.5581308005208176 0.0017886649855916336" />
+        <parent link="down_foot_bearing_a-v1" />
+        <child link="ankle_joint_ring1_b" />
+    </joint>
+    <joint name="ankle_joint_ring1_b_Revolute_115" type="revolute">
+        <origin xyz="6.170948463335435e-10 -0.003799896752591074 -2.7232894584625635e-05" rpy="-3.1415926535897856 1.2814646262529483e-14 -1.5619816942961332e-18" />
+        <parent link="ankle_joint_ring1_b" />
+        <child link="biped_ankle_a-v1" />
+        <axis xyz="8.375846967687341e-07 -0.9999747140768513 -0.007167518902519215" />
+        <limit lower="-0.349066" upper="0.349066" effort="1000000" velocity="1000000" />
+    </joint>
+    <joint name="biped_ankle_a-v1_Rigid-117" type="fixed">
+        <origin xyz="-9.187923488696016e-09 0.004999873570384246 3.5837594625900415e-05" rpy="1.4450246554886805e-15 1.3719606098980612e-14 -1.767069546650081e-18" />
+        <parent link="biped_ankle_a-v1" />
+        <child link="anklle_joint_axle-v1" />
+    </joint>
+    <joint name="down_foot_bearing-v1_Rigid-118" type="fixed">
+        <origin xyz="0.006221611484762377 0.008147488650753206 -0.015080143893458775" rpy="1.5457275544345475 -1.5581308005208176 0.0017886649855916507" />
+        <parent link="down_foot_bearing-v1" />
+        <child link="ankle_joint_ring1_a" />
+    </joint>
+    <joint name="ankle_joint_ring1_a_Revolute_119" type="revolute">
+        <origin xyz="6.173214117666248e-10 -0.0037998966451372952 -2.7242894007284412e-05" rpy="-3.1415926535897856 1.2814629321870535e-14 1.7247708388465686e-19" />
+        <parent link="ankle_joint_ring1_a" />
+        <child link="biped_ankle-v1" />
+        <axis xyz="8.375846967704688e-07 -0.9999747140768513 -0.007167518902519213" />
+        <limit lower="-0.349066" upper="0.349066" effort="1000000" velocity="1000000" />
+    </joint>
+    <joint name="biped_ankle_a-v1_Rigid-120" type="fixed">
+        <origin xyz="0.017300771911281567 -0.08934438652148341 0.039360571314950236" rpy="1.458902443296495e-15 1.3440098778913849e-14 -1.7673871840053014e-18" />
+        <parent link="biped_ankle_a-v1" />
+        <child link="foot_motor_a-v1" />
+    </joint>
+    <joint name="biped_ankle-v1_Rigid-121" type="fixed">
+        <origin xyz="0.01730078191128156 -0.08934438652148341 0.03936057131472363" rpy="1.4589024432964948e-15 1.344002424001449e-14 -3.3351922298138076e-20" />
+        <parent link="biped_ankle-v1" />
+        <child link="foot_motor-v1" />
+    </joint>
+    <joint name="biped_ankle-v1_Rigid-122" type="fixed">
+        <origin xyz="-9.188150063010881e-09 0.00499987367783806 3.582759520323276e-05" rpy="1.4450246554886803e-15 1.3719531560081252e-14 -3.3034284942917713e-20" />
+        <parent link="biped_ankle-v1" />
+        <child link="left_leg_bearing_axle_c-v1" />
+    </joint>
+    <joint name="motor_upper_leg_below_a_v1_Revolute_123" type="revolute">
+        <origin xyz="0.017298284960068334 0.0038449374519823466 0.0030192686955481654" rpy="-3.1415926534932166 -1.7280017401447522e-13 -7.625088612600583e-09" />
+        <parent link="motor_upper_leg_below_a-v1" />
+        <child link="outer_ball_bearing2-v1" />
+        <axis xyz="-0.012665426731662205 -1.7011198854498416e-05 -0.9999197902663612" />
+        <limit lower="-0.785398" upper="0.785398" effort="1000000" velocity="1000000" />
+    </joint>
+    <joint name="outer_ball_bearing2-v1_Rigid-126" type="fixed">
+        <origin xyz="-4.81247545036112e-05 -6.999450093303494e-08 -0.0037996952519912374" rpy="0.0003174608458743237 -3.979155260164294e-06 0.025067323531094938" />
+        <parent link="outer_ball_bearing2-v1" />
+        <child link="upper_leg_a-v1" />
+    </joint>
+    <joint name="outer_ball_bearing1-v1_Rigid-129" type="fixed">
+        <origin xyz="4.813487824939955e-05 6.01206298966872e-08 0.003799695123767357" rpy="0.0003174608458743238 -3.9791552601261265e-06 0.02506732353109487" />
+        <parent link="outer_ball_bearing1-v1" />
+        <child link="upper_leg-v1" />
+    </joint>
+    <joint name="upper_leg_a-v1_Rigid-130" type="fixed">
+        <origin xyz="-0.01201859345502431 -0.06810821794843512 0.006422006202309945" rpy="-6.059822782455982e-15 -2.4958736351266258e-14 -4.784402041213554e-13" />
+        <parent link="upper_leg_a-v1" />
+        <child link="leg_knee_motor-v1" />
+    </joint>
+    <joint name="motor_upper_b_Rigid_131" type="revolute">
+        <origin xyz="0.015052597863953708 -0.03553006036502085 0.004066191936267849" rpy="-1.8682971836270216e-15 -8.877731991381588e-15 -1.776651606865895e-18" />
+        <parent link="motor_upper_b" />
+        <child link="battery_support_a" />
+        <axis xyz="0 1 0"/>
+        <limit lower="-0.4" upper="0.4" effort="20" velocity="5" />
+    </joint>
+    <joint name="battery_support_a_Rigid-132" type="fixed">
+        <origin xyz="0.01700006043346253 -0.007172386414813392 -0.011051592843437597" rpy="-1.5707963267949618 -0.0017892346412206922 -1.5581313685301181" />
+        <parent link="battery_support_a" />
+        <child link="motor_upper_leg_below-v1" />
+    </joint>
+    <joint name="battery_bracket_upper-v1_Rigid-133" type="fixed">
+        <origin xyz="0.006882361787470934 0.01093715760830687 0.01708835311605876" rpy="1.5707963191700887 1.5581313685301184 -0.0017892346412723356" />
+        <parent link="battery_bracket_upper-v1" />
+        <child link="outer_ball_bearing" />
+    </joint>
+    <joint name="motor_upper_leg_below-v1_Rigid-134" type="fixed">
+        <origin xyz="0.03459450681896099 0.00043368839389998473 -0.00043819211626750843" rpy="-3.1415926534932166 1.7275684912625616e-13 7.625088338514276e-09" />
+        <parent link="motor_upper_leg_below-v1" />
+        <child link="battery_bracket_upper-v1" />
+    </joint>
+    <gazebo>
+  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    <robotNamespace>/</robotNamespace>
+  </plugin>
+</gazebo>
+
+<transmission name="motor_upper_leg_below_v1_Revolute_31_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+
+  <joint name="motor_upper_leg_below_v1_Revolute_31">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+
+  <actuator name="motor_upper_leg_below_v1_Revolute_31_motor">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="lower_leg_right_v1_Revolute_69_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+
+  <joint name="lower_leg_right_v1_Revolute_69">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+
+  <actuator name="lower_leg_right_v1_Revolute_69_motor">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="leg_knee_motor_a_Revolute_74_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+
+  <joint name="leg_knee_motor_a_Revolute_74">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+
+  <actuator name="leg_knee_motor_a_Revolute_74_motor">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="leg_knee_motor_v1_Revolute_82_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+
+  <joint name="leg_knee_motor_v1_Revolute_82">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+
+  <actuator name="leg_knee_motor_v1_Revolute_82_motor">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="Lower_Leg_v2_v1_Revolute_91_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+
+  <joint name="Lower_Leg_v2_v1_Revolute_91">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+
+  <actuator name="Lower_Leg_v2_v1_Revolute_91_motor">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="ankle_joint_ring1_b_Revolute_115_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+
+  <joint name="ankle_joint_ring1_b_Revolute_115">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+
+  <actuator name="ankle_joint_ring1_b_Revolute_115_motor">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="ankle_joint_ring1_a_Revolute_119_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+
+  <joint name="ankle_joint_ring1_a_Revolute_119">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+
+  <actuator name="ankle_joint_ring1_a_Revolute_119_motor">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="motor_upper_leg_below_a_v1_Revolute_123_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+
+  <joint name="motor_upper_leg_below_a_v1_Revolute_123">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+
+  <actuator name="motor_upper_leg_below_a_v1_Revolute_123_motor">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="motor_upper_a_Rigid_35_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="motor_upper_a_Rigid_35">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_upper_a_Rigid_35_motor">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="motor_upper_b_Rigid_131_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="motor_upper_b_Rigid_131">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_upper_b_Rigid_131_motor">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<gazebo reference="biped_ankle_v1">
+
+  <mu1>0.01</mu1>
+  <mu2>0.01</mu2>
+
+  <kp>1000</kp>
+  <kd>1</kd>
+
+</gazebo>
+
+<gazebo reference="biped_ankle_a_v1">
+
+  <mu1>0.01</mu1>
+  <mu2>0.01</mu2>
+
+  <kp>1000</kp>
+  <kd>1</kd>
+
+</gazebo>
+</robot>

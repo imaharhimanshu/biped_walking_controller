@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>chronos_balance</name>
+  <version>0.0.1</version>
+  <description>Humanoid robot Gazebo simulation</description>
+
+  <maintainer email="vishesh@example.com">Vishesh</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>xacro</depend>
+  <depend>urdf</depend>
+  <depend>gazebo_ros</depend>
+</package>
