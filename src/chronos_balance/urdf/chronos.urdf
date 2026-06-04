@@ -804,7 +804,7 @@
         <parent link="motor_upper_leg_below-v1" />
         <child link="outer_ball_bearing1-v1" />
         <axis xyz="0.012665426731662247 1.701119885449845e-05 0.9999197902663615" />
-        <limit lower="-0.785398" upper="0.785398" effort="1000000" velocity="1000000" />
+        <limit lower="-1.5" upper="1.5" effort="1000000" velocity="1000000" />
     </joint>
     <joint name="ball_bearing-v1_Rigid-32" type="fixed">
         <origin xyz="4.686841425368016e-05 6.01206298966872e-08 0.0036997031437442374" rpy="-1.583330994048457 1.5581313482598826 -3.141592653589793" />
@@ -816,7 +816,7 @@
         <parent link="motor_upper_a" />
         <child link="battery_support-v1" />
         <axis xyz="0 1 0"/>
-        <limit lower="-0.4" upper="0.4" effort="20" velocity="5" />
+        <limit lower="-0.7" upper="0.7" effort="20" velocity="5" />
     </joint>
     <joint name="battery_support-v1_Rigid-36" type="fixed">
         <origin xyz="-0.016999939570957724 -0.007172362648864041 -0.011051782994574459" rpy="1.5707963267948315 -0.0017892346412206907 -1.5581313685301181" />
@@ -838,7 +838,7 @@
         <parent link="lower_leg_right-v1" />
         <child link="leg_ankle_motor-v1" />
         <axis xyz="-0.012665852865054165 1.6986130176459404e-05 0.9999197848691025" />
-        <limit lower="-0.523599" upper="0.523599" effort="1000000" velocity="1000000" />
+        <limit lower="-1.04" upper="1.04" effort="1000000" velocity="1000000" />
     </joint>
     <joint name="upper_leg-v1_Rigid-73" type="fixed">
         <origin xyz="-0.011933590790920335 -0.0681512870696988 -0.006116325897159634" rpy="-6.059551731912861e-15 -2.4962210033382948e-14 -4.784141832692157e-13" />
@@ -850,7 +850,7 @@
         <parent link="leg_knee_motor_a" />
         <child link="lower_leg_right-v1" />
         <axis xyz="0.012665852865028469 1.69861301764604e-05 0.9999197848691028" />
-        <limit lower="-1.570796" upper="0.0" effort="1000000" velocity="1000000" />
+        <limit lower="-2.1" upper="0.0" effort="1000000" velocity="1000000" />
     </joint>
     <joint name="motor_upper_leg_below_a-v1_Rigid-75" type="fixed">
         <origin xyz="0.03459583860688417 -0.0003098853626108422 0.00043820898423484243" rpy="9.65767439436126e-11 -1.7276031814969161e-13 -7.625088341983723e-09" />
@@ -862,14 +862,14 @@
         <parent link="leg_knee_motor-v1" />
         <child link="Lower_Leg_v2-v1" />
         <axis xyz="-0.012665852865028467 -1.698613017646039e-05 -0.9999197848691028" />
-        <limit lower="0.0" upper="1.570796" effort="1000000" velocity="1000000" />
+        <limit lower="0.0" upper="2.1" effort="1000000" velocity="1000000" />
     </joint>
     <joint name="Lower_Leg_v2_v1_Revolute_91" type="revolute">
         <origin xyz="-0.0018703801936252517 -0.11607935278232909 2.563974803702962e-05" rpy="-0.0003174608003424252 -3.980556913169087e-06 -0.02506731993457346" />
         <parent link="Lower_Leg_v2-v1" />
         <child link="leg_ankle_motor_av1" />
         <axis xyz="-0.012665428134416875 -1.7011198851669015e-05 -0.9999197902485935" />
-        <limit lower="-0.523599" upper="0.523599" effort="1000000" velocity="1000000" />
+        <limit lower="-1.04" upper="1.04" effort="1000000" velocity="1000000" />
     </joint>
     <joint name="leg_ankle_motor_av1_Rigid-100" type="fixed">
         <origin xyz="-0.014703540213555062 -0.01268685307214839 0.011037320254250483" rpy="0.0003174608355128482 -3.977751804135308e-06 0.025067319935806454" />
@@ -896,7 +896,7 @@
         <parent link="ankle_joint_ring1_b" />
         <child link="biped_ankle_a-v1" />
         <axis xyz="8.375846967687341e-07 -0.9999747140768513 -0.007167518902519215" />
-        <limit lower="-0.349066" upper="0.349066" effort="1000000" velocity="1000000" />
+        <limit lower="-0.7" upper="0.7" effort="1000000" velocity="1000000" />
     </joint>
     <joint name="biped_ankle_a-v1_Rigid-117" type="fixed">
         <origin xyz="-9.187923488696016e-09 0.004999873570384246 3.5837594625900415e-05" rpy="1.4450246554886805e-15 1.3719606098980612e-14 -1.767069546650081e-18" />
@@ -913,7 +913,7 @@
         <parent link="ankle_joint_ring1_a" />
         <child link="biped_ankle-v1" />
         <axis xyz="8.375846967704688e-07 -0.9999747140768513 -0.007167518902519213" />
-        <limit lower="-0.349066" upper="0.349066" effort="1000000" velocity="1000000" />
+        <limit lower="-0.7" upper="0.7" effort="1000000" velocity="1000000" />
     </joint>
     <joint name="biped_ankle_a-v1_Rigid-120" type="fixed">
         <origin xyz="0.017300771911281567 -0.08934438652148341 0.039360571314950236" rpy="1.458902443296495e-15 1.3440098778913849e-14 -1.7673871840053014e-18" />
@@ -935,7 +935,7 @@
         <parent link="motor_upper_leg_below_a-v1" />
         <child link="outer_ball_bearing2-v1" />
         <axis xyz="-0.012665426731662205 -1.7011198854498416e-05 -0.9999197902663612" />
-        <limit lower="-0.785398" upper="0.785398" effort="1000000" velocity="1000000" />
+        <limit lower="-1.5" upper="1.5" effort="1000000" velocity="1000000" />
     </joint>
     <joint name="outer_ball_bearing2-v1_Rigid-126" type="fixed">
         <origin xyz="-4.81247545036112e-05 -6.999450093303494e-08 -0.0037996952519912374" rpy="0.0003174608458743237 -3.979155260164294e-06 0.025067323531094938" />
@@ -957,7 +957,7 @@
         <parent link="motor_upper_b" />
         <child link="battery_support_a" />
         <axis xyz="0 1 0"/>
-        <limit lower="-0.4" upper="0.4" effort="20" velocity="5" />
+        <limit lower="-0.7" upper="0.7" effort="20" velocity="5" />
     </joint>
     <joint name="battery_support_a_Rigid-132" type="fixed">
         <origin xyz="0.01700006043346253 -0.007172386414813392 -0.011051592843437597" rpy="-1.5707963267949618 -0.0017892346412206922 -1.5581313685301181" />
