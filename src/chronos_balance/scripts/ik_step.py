@@ -16,21 +16,98 @@ L2 = 0.116
 # =========================================
 target_h_left = 0.23
 target_h_right = 0.23
-target_shift = 0.0
+target_shift_left = 0.0
+target_shift_right = 0.0
 target_x_left = 0.0
 target_x_right = 0.0
 
 # =========================================
 # SYSTEMATIC 6-STAGE GAIT STATE MACHINE
 # =========================================
-def set_targets(h_l, h_r, shift, x_l, x_r, delay):
-    global target_h_left, target_h_right, target_shift, target_x_left, target_x_right
+def set_targets(h_l, h_r, shift_l, shift_r, x_l, x_r, delay):
+    global target_h_left, target_h_right, target_shift_left, target_shift_right, target_x_left, target_x_right
     target_h_left = h_l
     target_h_right = h_r
-    target_shift = shift
+    target_shift_left = shift_l
+    target_shift_right = shift_r
     target_x_left = x_l
     target_x_right = x_r
     rospy.sleep(delay)
+
+def swing_trajectory(duration):
+    """
+    Generates a continuous 50-point mathematical trajectory for the swing phase.
+    Forces the IK solver to follow a perfect UP -> FORWARD -> DOWN arc.
+    """
+    steps = 50
+    dt = duration / steps
+    for i in range(steps + 1):
+        t = i / float(steps)
+        
+        # 1. Forward Progression (x_r)
+        # Swings from 0.00 to 0.15
+        x_r = 0.00 + t * 0.15
+        
+        # 2. Sagittal Counterbalance (x_l)
+        # Pelvis leans back from 0.00 to -0.03 to balance the swinging leg, keeping torso upright!
+        x_l = 0.00 + t * (-0.03)
+        
+        # 3. Foot Height Arc (h_r)
+        # Linear drop from 0.16 to 0.22, minus a massive sine wave bump for extra clearance!
+        # At t=0.5, h_bump is -0.06, creating a peak lift height of 0.13m to force hip flexion!
+        h_linear = 0.16 + t * (0.22 - 0.16)
+        h_bump = -0.06 * math.sin(math.pi * t)
+        h_r = h_linear + h_bump
+        
+        # 4. Lateral Stance (shift_r)
+        # Smoothly interpolates from 0.20 to wide 0.18 landing stance
+        shift_r = 0.20 + t * (0.18 - 0.20)
+        
+        # Set targets (h_l stays crouched at 0.22, shift_l stays at 0.25)
+        set_targets(0.22, h_r, 0.25, shift_r, x_l, x_r, dt)
+
+def walk_sequence():
+    try:
+        rospy.loginfo("Resetting to standing pose...")
+        set_targets(0.23, 0.23, 0.0, 0.0, 0.0, 0.0, 3.0)
+        
+        print("\n--- Starting Forward Step Sequence ---")
+        
+        print("Stage 1: Pre-Crouch (Double Support)...")
+        # Crouch FIRST while both feet are firmly planted to safely lower CoM without falling backward!
+        set_targets(0.22, 0.22, 0.0, 0.0, 0.0, 0.0, 3.0)
+        
+        print("Stage 2: Pure Lateral Shift (Reduced leftward mass)...")
+        # Keep the safe crouch (0.20). Decrease lateral shift to 0.20.
+        # Keep right leg PERFECTLY VERTICAL (0.00) to keep its heavy mass on the right side! (Stops leftward lean).
+        set_targets(0.22, 0.22, 0.25, 0.25, 0.00, 0.00, 3) 
+        
+        print("Stage 3: Lifting Right Leg (Pre-emptive Forward Swing)...")
+        # Lift Right Leg to 0.16. 
+        # SWING FORWARD to 0.04 *during* the lift! This perfectly counteracts the right thigh pushing backward!
+        set_targets(0.22, 0.16, 0.25, 0.20, 0.00, 0.00, 3)
+
+        print("Stage 4: Continuous Sine-Wave Arc Trajectory...")
+        # Execute the 50-step mathematical curve (UP -> FORWARD -> DOWN) with automatic torso counterbalance
+        swing_trajectory(2.5)
+        
+        print("Stage 5: Wide-Stance Touchdown (Safe Landing)...")
+        # Restored your custom 0.22 height and 0.20 stance!
+        set_targets(0.235, 0.22, 0.05, 0.18, 0.02, 0.15, 2.0)
+        
+        print("Stage 6: Forward Weight Transfer (Synchronized)...")
+        # Matching the height (0.22, 0.215) and stance (0.05, 0.20) from Stage 5 so it doesn't accidentally squat!
+        set_targets(0.22, 0.195, 0.05, 0.20, -0.03, 0.04, 2.0)
+
+        print("Stage 7: Stabilize Stance...")
+        set_targets(0.22, 0.195, 0.05, 0.20, -0.03, 0.04, 2.0)
+        
+        print("Stage 8: Step Complete (Hold Pose)...")
+        set_targets(0.22, 0.195, 0.05, 0.20, -0.03, 0.04, 3.0)
+        
+        print("--- Step Complete! Biped Stable. ---\n")
+    except rospy.ROSInterruptException:
+        pass
 
 def state_machine_thread():
     # Wait a moment for Gazebo to settle on startup
@@ -38,38 +115,7 @@ def state_machine_thread():
     
     while not rospy.is_shutdown():
         input("\n[PRESS ENTER] to execute a Static Step Forward...")
-        
-        print("\n--- Starting Forward Step Sequence ---")
-        
-        print("Stage 1: Pure Lateral Shift (Tilting weight over Left Leg)...")
-        # Tilt robot sideways to 0.25 to shift CoM over Left foot. Keep feet flat.
-        set_targets(0.23, 0.23, 0.25, 0.00, 0.00, 3.0) 
-        
-        print("Stage 2: Lifting Right Leg (Straight up, no forward lean)...")
-        # Lift Right Leg by shortening it to 0.16 (7cm lift). Keep supporting leg fully extended.
-        # This is the most stable posture to break contact with the floor.
-        set_targets(0.25, 0.16, 0.25, 0.00, 0.00, 2.5)
-        
-        print("Stage 3: Swinging & Knee Extension (Right leg swings in the air, Torso stays braced BACK)...")
-        # Swing right foot to 0.07, extend the right knee (h_r=0.20) so it reaches forward.
-        # Keep Left Leg (supporting) braced backward (x_l = -0.01) to keep the torso back and counterbalance the swinging leg!
-        # Use optimal 0.19 lateral shift to prevent over-leaning and tripping.
-        set_targets(0.25, 0.20, 0.1615, -0.01, 0.07, 2.5)
-        
-        print("Stage 4: Landing & Torso Roll (Left leg rolls forward as Right foot plants, knees bent for compliance)...")
-        # Lower pelvis to 0.20m (deep crouch) to ensure Right leg (x_r=0.07) physically reaches the ground!
-        # Torso rolls forward (x_l = -0.03) and shift remains at 0.19 for single-leg balance.
-        set_targets(0.20, 0.20, 0.1615, -0.03, 0.07, 2.5)
-        
-        print("Stage 5: Weight Transfer (Fully centering lateral tilt in deep crouch)...")
-        # Center lateral shift to 0.00 while keeping pelvis low (0.20m) for stable double-support weight transfer.
-        set_targets(0.20, 0.20, 0.00, -0.03, 0.07, 2.0)
-        
-        print("Stage 6: Recovering Stance (Centering foot offsets and standing tall)...")
-        # Recover foot offsets to 0.00 and stand tall by straightening both knees to 0.23m standing height.
-        set_targets(0.23, 0.23, 0.00, 0.00, 0.00, 2.0)
-        
-        print("--- Step Complete! Biped Stable. ---\n")
+        walk_sequence()
 
 # =========================================
 # INVERSE KINEMATICS
@@ -117,7 +163,8 @@ def main():
 
     current_h_left = 0.23
     current_h_right = 0.23
-    current_shift = 0.0
+    current_shift_left = 0.0
+    current_shift_right = 0.0
     current_x_left = 0.0
     current_x_right = 0.0
     
@@ -127,11 +174,12 @@ def main():
 
     while not rospy.is_shutdown():
         # SMOOTH INTERPOLATION (Muscular damping)
-        alpha = 0.02
+        alpha = 0.030
 
         current_h_left += (target_h_left - current_h_left) * alpha
         current_h_right += (target_h_right - current_h_right) * alpha
-        current_shift += (target_shift - current_shift) * alpha
+        current_shift_left += (target_shift_left - current_shift_left) * alpha
+        current_shift_right += (target_shift_right - current_shift_right) * alpha
         current_x_left += (target_x_left - current_x_left) * alpha
         current_x_right += (target_x_right - current_x_right) * alpha
 
@@ -150,10 +198,10 @@ def main():
         la = lh_ankle
 
         # ROLL CALCULATIONS (Leaning sideways)
-        left_roll = current_shift
-        right_roll = current_shift
-        left_ankle_roll = -current_shift
-        right_ankle_roll = -current_shift
+        left_roll = current_shift_left
+        right_roll = current_shift_right
+        left_ankle_roll = -current_shift_left
+        right_ankle_roll = -current_shift_right
 
         # PUBLISH JOINT TARGETS
         right_hip_pub.publish(rh)
