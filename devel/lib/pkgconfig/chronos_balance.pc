@@ -1,0 +1,8 @@
+prefix=/home/kr10x_linux/Downloads/biped_walking_controller/devel
+
+Name: chronos_balance
+Description: Description of chronos_balance
+Version: 0.0.1
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
