@@ -1,0 +1,2 @@
+chronos_balance
+-DCATKIN_DEVEL_PREFIX=/home/kr10x_linux/Downloads/biped_walking_controller/devel -DCMAKE_INSTALL_PREFIX=/home/kr10x_linux/Downloads/biped_walking_controller/install -G Unix Makefiles

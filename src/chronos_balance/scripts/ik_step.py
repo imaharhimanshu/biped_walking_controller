@@ -14,8 +14,8 @@ L2 = 0.116
 # =========================================
 # TARGETS (Shared State)
 # =========================================
-target_h_left = 0.23
-target_h_right = 0.23
+target_h_left = 0.22
+target_h_right = 0.22
 target_shift_left = 0.0
 target_shift_right = 0.0
 target_x_left = 0.0
@@ -66,10 +66,41 @@ def swing_trajectory(duration):
         # Set targets (h_l stays crouched at 0.22, shift_l stays at 0.25)
         set_targets(0.22, h_r, 0.25, shift_r, x_l, x_r, dt)
 
+def return_to_standing(duration):
+    """
+    Smoothly interpolates all targets back to a neutral standing pose.
+    """
+    global target_h_left, target_h_right, target_shift_left, target_shift_right, target_x_left, target_x_right
+    
+    start_h_l = target_h_left
+    start_h_r = target_h_right
+    start_shift_l = target_shift_left
+    start_shift_r = target_shift_right
+    start_x_l = target_x_left
+    start_x_r = target_x_right
+    
+    steps = 50
+    dt = duration / steps if steps > 0 else 0
+    
+    for i in range(steps + 1):
+        t = i / float(steps)
+        # Ease-in, ease-out (cosine interpolation)
+        ease_t = (1 - math.cos(t * math.pi)) / 2.0
+        
+        h_l = start_h_l + ease_t * (0.22 - start_h_l)
+        h_r = start_h_r + ease_t * (0.22 - start_h_r)
+        shift_l = start_shift_l + ease_t * (0.0 - start_shift_l)
+        shift_r = start_shift_r + ease_t * (0.0 - start_shift_r)
+        x_l = start_x_l + ease_t * (0.0 - start_x_l)
+        x_r = start_x_r + ease_t * (0.0 - start_x_r)
+        
+        set_targets(h_l, h_r, shift_l, shift_r, x_l, x_r, dt)
+
 def walk_sequence():
     try:
         rospy.loginfo("Resetting to standing pose...")
-        set_targets(0.23, 0.23, 0.0, 0.0, 0.0, 0.0, 3.0)
+        return_to_standing(2.5)
+        rospy.sleep(0.5)
         
         print("\n--- Starting Forward Step Sequence ---")
         
@@ -91,19 +122,7 @@ def walk_sequence():
         # Execute the 50-step mathematical curve (UP -> FORWARD -> DOWN) with automatic torso counterbalance
         swing_trajectory(2.5)
         
-        print("Stage 5: Wide-Stance Touchdown (Safe Landing)...")
-        # Restored your custom 0.22 height and 0.20 stance!
-        set_targets(0.235, 0.22, 0.05, 0.18, 0.02, 0.15, 2.0)
         
-        print("Stage 6: Forward Weight Transfer (Synchronized)...")
-        # Matching the height (0.22, 0.215) and stance (0.05, 0.20) from Stage 5 so it doesn't accidentally squat!
-        set_targets(0.22, 0.195, 0.05, 0.20, -0.03, 0.04, 2.0)
-
-        print("Stage 7: Stabilize Stance...")
-        set_targets(0.22, 0.195, 0.05, 0.20, -0.03, 0.04, 2.0)
-        
-        print("Stage 8: Step Complete (Hold Pose)...")
-        set_targets(0.22, 0.195, 0.05, 0.20, -0.03, 0.04, 3.0)
         
         print("--- Step Complete! Biped Stable. ---\n")
     except rospy.ROSInterruptException:
@@ -161,8 +180,8 @@ def main():
     # Start the gait state machine thread
     threading.Thread(target=state_machine_thread, daemon=True).start()
 
-    current_h_left = 0.23
-    current_h_right = 0.23
+    current_h_left = 0.22
+    current_h_right = 0.22
     current_shift_left = 0.0
     current_shift_right = 0.0
     current_x_left = 0.0
@@ -189,13 +208,20 @@ def main():
 
         # DYNAMIC ATAN2 SIGN AND PLANE MAPPINGS
         # Maps correct standing pose while unlocking true forward/backward sagittal motion
-        rh = -rh_hip + 2 * math.atan2(current_x_right, current_h_right)
+        rh_offset = 1.6 * math.atan2(current_x_right, current_h_right)
+        rh = -rh_hip + rh_offset
         rk = -abs(rh_knee)  # Right knee needs NEGATIVE angle to bend backwards
-        ra = rh_ankle
+        ra = rh_ankle + rh_offset  # Keep foot perfectly parallel to ground!
 
-        lh = lh_hip - 2 * math.atan2(current_x_left, current_h_left)
+        lh_offset = -2 * math.atan2(current_x_left, current_h_left)
+        lh = lh_hip + lh_offset
         lk = abs(lh_knee)   # Left knee needs POSITIVE angle to bend backwards
-        la = lh_ankle
+        la = lh_ankle - lh_offset  # Keep foot perfectly parallel to ground!
+        
+        # User requested: "rotate the left angle a little bit along the swing"
+        # As the right leg swings forward, we gently lift the left heel (toe down) to push off.
+        if current_x_right > 0.02:
+            la += 0.8 * (current_x_right - 0.02)
 
         # ROLL CALCULATIONS (Leaning sideways)
         left_roll = current_shift_left
