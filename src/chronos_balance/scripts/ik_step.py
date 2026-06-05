@@ -14,8 +14,8 @@ L2 = 0.116
 # =========================================
 # TARGETS (Shared State)
 # =========================================
-target_h_left = 0.22
-target_h_right = 0.22
+target_h_left = 0.23
+target_h_right = 0.23
 target_shift_left = 0.0
 target_shift_right = 0.0
 target_x_left = 0.0
@@ -45,84 +45,63 @@ def swing_trajectory(duration):
         t = i / float(steps)
         
         # 1. Forward Progression (x_r)
-        # Swings from 0.00 to 0.15
-        x_r = 0.00 + t * 0.15
+        # Swings to a safe 0.08m (8cm)
+        x_r = 0.00 + t * 0.08
         
-        # 2. Sagittal Counterbalance (x_l)
-        # Pelvis leans back from 0.00 to -0.03 to balance the swinging leg, keeping torso upright!
-        x_l = 0.00 + t * (-0.03)
+        # 2. Sagittal Forward Lean (x_l)
+        # Because an 8cm step is massive, the pelvis MUST lean 5cm forward to keep the CoM balanced!
+        x_l = 0.00 - t * 0.03
         
         # 3. Foot Height Arc (h_r)
-        # Linear drop from 0.16 to 0.22, minus a massive sine wave bump for extra clearance!
-        # At t=0.5, h_bump is -0.06, creating a peak lift height of 0.13m to force hip flexion!
-        h_linear = 0.16 + t * (0.22 - 0.16)
-        h_bump = -0.06 * math.sin(math.pi * t)
+        # Reduced the sine wave peak to 4cm (-0.04) for a natural, smooth swing!
+        # Decreased final height to 0.20 so the leg stays bent, preventing early heel strike!
+        h_linear = 0.16 + t * (0.19 - 0.16)
+        h_bump = -0.04 * math.sin(math.pi * t)
         h_r = h_linear + h_bump
         
         # 4. Lateral Stance (shift_r)
-        # Smoothly interpolates from 0.20 to wide 0.18 landing stance
-        shift_r = 0.20 + t * (0.18 - 0.20)
+        # Maintained the stable 0.25 to prevent leftward catapulting
+        shift_r = 0.25
         
-        # Set targets (h_l stays crouched at 0.22, shift_l stays at 0.25)
-        set_targets(0.22, h_r, 0.25, shift_r, x_l, x_r, dt)
-
-def return_to_standing(duration):
-    """
-    Smoothly interpolates all targets back to a neutral standing pose.
-    """
-    global target_h_left, target_h_right, target_shift_left, target_shift_right, target_x_left, target_x_right
-    
-    start_h_l = target_h_left
-    start_h_r = target_h_right
-    start_shift_l = target_shift_left
-    start_shift_r = target_shift_right
-    start_x_l = target_x_left
-    start_x_r = target_x_right
-    
-    steps = 50
-    dt = duration / steps if steps > 0 else 0
-    
-    for i in range(steps + 1):
-        t = i / float(steps)
-        # Ease-in, ease-out (cosine interpolation)
-        ease_t = (1 - math.cos(t * math.pi)) / 2.0
-        
-        h_l = start_h_l + ease_t * (0.22 - start_h_l)
-        h_r = start_h_r + ease_t * (0.22 - start_h_r)
-        shift_l = start_shift_l + ease_t * (0.0 - start_shift_l)
-        shift_r = start_shift_r + ease_t * (0.0 - start_shift_r)
-        x_l = start_x_l + ease_t * (0.0 - start_x_l)
-        x_r = start_x_r + ease_t * (0.0 - start_x_r)
-        
-        set_targets(h_l, h_r, shift_l, shift_r, x_l, x_r, dt)
+        # Set targets (h_l crouches to 0.21 to safely support the -0.05 backward stretch!)
+        set_targets(0.21, h_r, 0.25, shift_r, x_l, x_r, dt)
 
 def walk_sequence():
     try:
         rospy.loginfo("Resetting to standing pose...")
-        return_to_standing(2.5)
-        rospy.sleep(0.5)
+        set_targets(0.23, 0.23, 0.0, 0.0, 0.0, 0.0, 3.0)
         
         print("\n--- Starting Forward Step Sequence ---")
         
         print("Stage 1: Pre-Crouch (Double Support)...")
-        # Crouch FIRST while both feet are firmly planted to safely lower CoM without falling backward!
         set_targets(0.22, 0.22, 0.0, 0.0, 0.0, 0.0, 3.0)
         
         print("Stage 2: Pure Lateral Shift (Reduced leftward mass)...")
-        # Keep the safe crouch (0.20). Decrease lateral shift to 0.20.
-        # Keep right leg PERFECTLY VERTICAL (0.00) to keep its heavy mass on the right side! (Stops leftward lean).
         set_targets(0.22, 0.22, 0.25, 0.25, 0.00, 0.00, 3) 
         
         print("Stage 3: Lifting Right Leg (Pre-emptive Forward Swing)...")
-        # Lift Right Leg to 0.16. 
-        # SWING FORWARD to 0.04 *during* the lift! This perfectly counteracts the right thigh pushing backward!
-        set_targets(0.22, 0.16, 0.25, 0.20, 0.00, 0.00, 3)
+        # Keep shift_r at 0.25 so the legs stay perfectly parallel!
+        set_targets(0.21, 0.16, 0.25, 0.25, 0.00, 0.00, 3)
 
         print("Stage 4: Continuous Sine-Wave Arc Trajectory...")
-        # Execute the 50-step mathematical curve (UP -> FORWARD -> DOWN) with automatic torso counterbalance
         swing_trajectory(2.5)
         
+        print("Stage 5: Wide-Stance Touchdown (Safe Landing)...")
+        # Touchdown starts from the swing trajectory (0.20 height, 0.08 forward)!
+        # x_l = -0.04 catches the backward fall by keeping the pelvis perfectly over the feet!
+        # h_r drops to 0.21 to firmly plant the foot on the ground.
+        set_targets(0.21, 0.21, 0.05, 0.05, -0.04, 0.08, 2.0)
         
+        print("Stage 6: Forward Weight Transfer (Synchronized)...")
+        # Center the pelvis perfectly between the feet!
+        # Distance is 13cm (-0.05 to 0.08). Midpoint is 0.065.
+        set_targets(0.21, 0.21, 0.00, 0.00, -0.065, 0.065, 2.0)
+
+        print("Stage 7: Stabilize Stance...")
+        set_targets(0.21, 0.21, 0.00, 0.00, -0.065, 0.065, 2.0)
+        
+        print("Stage 8: Step Complete (Hold Pose)...")
+        set_targets(0.21, 0.21, 0.00, 0.00, -0.065, 0.065, 3.0)
         
         print("--- Step Complete! Biped Stable. ---\n")
     except rospy.ROSInterruptException:
@@ -160,7 +139,7 @@ def compute_ik(height, x_offset):
 # MAIN CONTROL LOOP
 # =========================================
 def main():
-    global target_h_left, target_h_right, target_shift, target_x_left, target_x_right
+    global target_h_left, target_h_right, target_shift_left, target_shift_right, target_x_left, target_x_right
     rospy.init_node("humanoid_ik_step")
 
     # Right Leg Publishers
@@ -180,8 +159,8 @@ def main():
     # Start the gait state machine thread
     threading.Thread(target=state_machine_thread, daemon=True).start()
 
-    current_h_left = 0.22
-    current_h_right = 0.22
+    current_h_left = 0.23
+    current_h_right = 0.23
     current_shift_left = 0.0
     current_shift_right = 0.0
     current_x_left = 0.0
@@ -207,21 +186,14 @@ def main():
         rh_hip, rh_knee, rh_ankle = compute_ik(current_h_right, current_x_right)
 
         # DYNAMIC ATAN2 SIGN AND PLANE MAPPINGS
-        # Maps correct standing pose while unlocking true forward/backward sagittal motion
-        rh_offset = 1.6 * math.atan2(current_x_right, current_h_right)
-        rh = -rh_hip + rh_offset
-        rk = -abs(rh_knee)  # Right knee needs NEGATIVE angle to bend backwards
-        ra = rh_ankle + rh_offset  # Keep foot perfectly parallel to ground!
+        # THE ONLY CHANGE: Flat Foot Ankle Fix
+        rh = -rh_hip + 2.0 * math.atan2(current_x_right, current_h_right)
+        rk = -abs(rh_knee)  
+        ra = rh + rk
 
-        lh_offset = -2 * math.atan2(current_x_left, current_h_left)
-        lh = lh_hip + lh_offset
-        lk = abs(lh_knee)   # Left knee needs POSITIVE angle to bend backwards
-        la = lh_ankle - lh_offset  # Keep foot perfectly parallel to ground!
-        
-        # User requested: "rotate the left angle a little bit along the swing"
-        # As the right leg swings forward, we gently lift the left heel (toe down) to push off.
-        if current_x_right > 0.02:
-            la += 0.8 * (current_x_right - 0.02)
+        lh = lh_hip - 2.0 * math.atan2(current_x_left, current_h_left)
+        lk = abs(lh_knee)   
+        la = -(lh + lk)
 
         # ROLL CALCULATIONS (Leaning sideways)
         left_roll = current_shift_left
