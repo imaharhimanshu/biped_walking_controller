@@ -16,4 +16,17 @@ This repository contains the core ROS catkin workspace for Team Humanoid's biped
 *   ROS Noetic 
 *   Eigen (for kinematics matrix operations)
 
+## Build Instructions
+This project uses the standard catkin build system. Do not build this repository directly; it must be compiled from the root of your workspace.
 
+```bash
+# Navigate to your workspace source directory
+cd ~/catkin_ws/src
+
+# Clone the repository
+git clone [https://github.com/your-username/team-humanoid-locomotion.git](https://github.com/your-username/team-humanoid-locomotion.git)
+
+# Navigate back to the workspace root and build
+cd ~/catkin_ws
+catkin_make
+source devel/setup.bash
