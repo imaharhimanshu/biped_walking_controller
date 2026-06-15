@@ -24,7 +24,7 @@ This project uses the standard catkin build system. Do not build this repository
 cd ~/catkin_ws/src
 
 # Clone the repository
-git clone [https://github.com/your-username/team-humanoid-locomotion.git](https://github.com/your-username/team-humanoid-locomotion.git)
+git clone [https://github.com/your-username/biped_walking_controller.git](https://github.com/your-username/biped_walking_controller.git)
 
 # Navigate back to the workspace root and build
 cd ~/catkin_ws
