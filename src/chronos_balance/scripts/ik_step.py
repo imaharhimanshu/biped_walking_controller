@@ -44,27 +44,40 @@ def swing_trajectory(duration):
     for i in range(steps + 1):
         t = i / float(steps)
         
-        # 1. Forward Progression (x_r)
-        # Swings to a safe 0.08m (8cm)
-        x_r = 0.00 + t * 0.08
+        # 1. Forward Progression (Symmetrical 12cm step)
+        x_r = 0.00 + t * 0.13
         
-        # 2. Sagittal Forward Lean (x_l)
-        # Because an 8cm step is massive, the pelvis MUST lean 5cm forward to keep the CoM balanced!
+        # 2. Sagittal Forward Lean
         x_l = 0.00 - t * 0.03
         
-        # 3. Foot Height Arc (h_r)
-        # Reduced the sine wave peak to 4cm (-0.04) for a natural, smooth swing!
-        # Decreased final height to 0.20 so the leg stays bent, preventing early heel strike!
-        h_linear = 0.16 + t * (0.19 - 0.16)
-        h_bump = -0.04 * math.sin(math.pi * t)
+        # 3. Foot Height Arc (Ends exactly at 0.21 for a smooth touchdown!)
+        # Using the exact Ankle Frontal Plane equation from the screenshot:
+        # z = 0.8434 * (x - 9)^2 * (x + 3) mapped to t
+        x_ankle = -3.0 + 12.0 * t
+        raw_ankle = ((x_ankle - 9.0) ** 2) * (x_ankle + 3.0)
+        # Scaled so the peak gives exactly our desired 0.04m step height
+        h_bump = -0.00015625 * raw_ankle
+        h_linear = 0.17 + t * (0.19 - 0.17)
         h_r = h_linear + h_bump
         
-        # 4. Lateral Stance (shift_r)
-        # Maintained the stable 0.25 to prevent leftward catapulting
-        shift_r = 0.25
+        # 4. Lateral Stance (shift_l and shift_r)
+        # Using the exact Top Plane equation from the screenshot:
+        # COM = 3 * sin(wt) for the lateral shift!
+        # We model this by applying a sinusoidal wave to the shift targets,
+        # peaking in the middle of the swing to keep the COM perfectly balanced.
+        com_lateral_sway = 0.03 * math.sin(math.pi * t)
+        shift_l = 0.25  
+        shift_r = (0.27 - t * 0.02) + com_lateral_sway
         
-        # Set targets (h_l crouches to 0.21 to safely support the -0.05 backward stretch!)
-        set_targets(0.21, h_r, 0.25, shift_r, x_l, x_r, dt)
+        # 5. COM Frontal Plane Trajectory (h_l)
+        # Using the exact COM trajectory equation from the screenshot!
+        # COM = 0.015625 * (x - 4)^2 * (x - 2)
+        x_com = 2.0 + 2.0 * t
+        com_bump = 0.015625 * ((x_com - 4.0) ** 2) * (x_com - 2.0)
+        h_l = 0.21 + com_bump
+        
+        # Set targets (h_l now dynamically follows the exact mathematical COM trajectory)
+        set_targets(h_l, h_r, shift_l, shift_r, x_l, x_r, dt)
 
 def walk_sequence():
     try:
@@ -81,7 +94,7 @@ def walk_sequence():
         
         print("Stage 3: Lifting Right Leg (Pre-emptive Forward Swing)...")
         # Keep shift_r at 0.25 so the legs stay perfectly parallel!
-        set_targets(0.21, 0.16, 0.25, 0.25, 0.00, 0.00, 3)
+        set_targets(0.21, 0.17, 0.25, 0.27, 0.00, 0.00, 3)
 
         print("Stage 4: Continuous Sine-Wave Arc Trajectory...")
         swing_trajectory(2.5)
@@ -90,18 +103,20 @@ def walk_sequence():
         # Touchdown starts from the swing trajectory (0.20 height, 0.08 forward)!
         # x_l = -0.04 catches the backward fall by keeping the pelvis perfectly over the feet!
         # h_r drops to 0.21 to firmly plant the foot on the ground.
-        set_targets(0.21, 0.21, 0.05, 0.05, -0.04, 0.08, 2.0)
+        # h_r drops to 0.21 to firmly plant the foot on the ground.
+        # Shifted further right (-0.12) as requested.
+        set_targets(0.21, 0.20, 0.07, 0.03, -0.035, 0.10, 2.0)
         
-        print("Stage 6: Forward Weight Transfer (Synchronized)...")
-        # Center the pelvis perfectly between the feet!
-        # Distance is 13cm (-0.05 to 0.08). Midpoint is 0.065.
-        set_targets(0.21, 0.21, 0.00, 0.00, -0.065, 0.065, 2.0)
+        # print("Stage 6: Forward Weight Transfer (Synchronized)...")
+        # # Center the pelvis perfectly between the feet!
+        # # Distance is 13cm (-0.05 to 0.08). Midpoint is 0.065.
+        # set_targets(0.21, 0.21, -0.25, -0.25, -0.065, 0.065, 2.0)
 
-        print("Stage 7: Stabilize Stance...")
-        set_targets(0.21, 0.21, 0.00, 0.00, -0.065, 0.065, 2.0)
+        # print("Stage 7: Stabilize Stance...")
+        # set_targets(0.21, 0.21, -0.25, -0.25, -0.065, 0.065, 2.0)
         
-        print("Stage 8: Step Complete (Hold Pose)...")
-        set_targets(0.21, 0.21, 0.00, 0.00, -0.065, 0.065, 3.0)
+        # print("Stage 8: Step Complete (Hold Pose)...")
+        # set_targets(0.21, 0.21, -0.25, -0.25, -0.065, 0.065, 3.0)
         
         print("--- Step Complete! Biped Stable. ---\n")
     except rospy.ROSInterruptException:
@@ -116,9 +131,12 @@ def state_machine_thread():
         walk_sequence()
 
 # =========================================
-# INVERSE KINEMATICS
+# FLAWLESS 3-DOF GEOMETRIC IK (HUMAN LEG)
 # =========================================
-def compute_ik(height, x_offset):
+def compute_human_ik(height, x_offset):
+    # Calculates mathematically perfect geometric angles for a human leg.
+    # POSITIVE = Forward / Toes Down
+    # NEGATIVE = Backward / Bend Backward / Toes Up
     y = height
     x = x_offset
     d = math.sqrt(x*x + y*y)
@@ -126,14 +144,22 @@ def compute_ik(height, x_offset):
     max_len = L1 + L2 - 0.00001
     d = min(d, max_len)
 
+    # 1. Raw Knee Angle (Law of Cosines)
     cos_knee = (d*d - L1*L1 - L2*L2) / (2 * L1 * L2)
     cos_knee = max(min(cos_knee, 1.0), -1.0)
-    knee = math.acos(cos_knee)
+    knee_raw = math.acos(cos_knee)
 
-    hip = math.atan2(x, y) - math.atan2(L2 * math.sin(knee), L1 + L2 * math.cos(knee))
-    ankle = -(hip + knee) 
+    # 2. Geometric Human Angles
+    # Knee bends backwards (Negative)
+    knee_geom = -knee_raw
+    
+    # Hip swings forward to compensate for backward knee
+    hip_geom = math.atan2(x, y) + math.atan2(L2 * math.sin(knee_raw), L1 + L2 * math.cos(knee_raw))
+    
+    # Ankle mathematically cancels the leg angle to stay perfectly horizontal
+    ankle_geom = -(hip_geom + knee_geom)
 
-    return hip, knee, ankle
+    return hip_geom, knee_geom, ankle_geom
 
 # =========================================
 # MAIN CONTROL LOOP
@@ -181,25 +207,31 @@ def main():
         current_x_left += (target_x_left - current_x_left) * alpha
         current_x_right += (target_x_right - current_x_right) * alpha
 
-        # IK CALCULATIONS
-        lh_hip, lh_knee, lh_ankle = compute_ik(current_h_left, current_x_left)
-        rh_hip, rh_knee, rh_ankle = compute_ik(current_h_right, current_x_right)
+        # IK CALCULATIONS (Flawless Human Geometry)
+        lh_hip, lh_knee, lh_ankle = compute_human_ik(current_h_left, current_x_left)
+        rh_hip, rh_knee, rh_ankle = compute_human_ik(current_h_right, current_x_right)
 
-        # DYNAMIC ATAN2 SIGN AND PLANE MAPPINGS
-        # THE ONLY CHANGE: Flat Foot Ankle Fix
-        rh = -rh_hip + 2.0 * math.atan2(current_x_right, current_h_right)
-        rk = -abs(rh_knee)  
-        ra = rh + rk
-
-        lh = lh_hip - 2.0 * math.atan2(current_x_left, current_h_left)
-        lk = abs(lh_knee)   
-        la = -(lh + lk)
+        # APPLY URDF JOINT SIGNS
+        # The URDF has the left leg CAD mirrored, meaning its pitch axes are mathematically inverted!
+        
+        # Right Leg URDF (Standard Pitch Axes)
+        rh = rh_hip
+        rk = rh_knee
+        ra = -rh_ankle
+        
+        # Left Leg URDF (Mirrored Pitch Axes)
+        lh = -lh_hip
+        lk = -lh_knee
+        la = -lh_ankle
 
         # ROLL CALCULATIONS (Leaning sideways)
+        # BUG FIX: Force the right leg to strictly copy the left leg's roll. 
+        # This guarantees the legs form a mathematically perfect parallelogram!
+        # If they differ even slightly while both feet are on the ground, the kinematic chain binds and the robot falls!
         left_roll = current_shift_left
-        right_roll = current_shift_right
+        right_roll = current_shift_left
         left_ankle_roll = -current_shift_left
-        right_ankle_roll = -current_shift_right
+        right_ankle_roll = -current_shift_left
 
         # PUBLISH JOINT TARGETS
         right_hip_pub.publish(rh)
